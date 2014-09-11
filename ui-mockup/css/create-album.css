@@ -81,6 +81,26 @@ table #separate td {
 .photos{
 	padding-left: 57px;
 }
-.photos div{
+
+.photos div.photo, .photos div.add{
+	padding-top: 7px;
+	height: 153px;
+	text-align: center;
 	margin-bottom: 35px;
+}
+/*
+.photos div.photo:hover{
+	box-shadow: inset 0px 0px 5px #c2c2c2;
+}
+*/
+input.cb{
+	visibility: hidden;
+}
+
+.photos div.photo:hover input.cb{
+	visibility: visible;
+}
+
+span.delbadimg{
+	font-size: 13px;
 }
