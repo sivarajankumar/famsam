@@ -1,0 +1,91 @@
+html { 
+	height:100%; 
+	margin: 0;
+    padding: 0;
+}
+
+body {position:absolute; top:0; bottom:0; right:0; left:0; margin: 0;padding: 0;}
+
+.topbar {
+	height: 45px;
+	width: 100%;
+	background-color: #2EB82E;
+	position: fixed;
+	display:block;
+	z-index: 1;
+}
+
+#content {
+	width: 100%;
+	margin: 0;
+	padding-top: 54px;
+	min-height:100%;
+	display: block;
+}
+
+#footer {
+	border-top: 1px solid grey;
+	height: 60px;
+	background-color: #82D482;
+}
+
+#footer div {
+	padding-top: 20px;
+	padding-left: 10%;
+}
+
+div #logo {
+	float: left;
+	padding-top: 10px;
+	padding-left: 150px;
+}
+
+div #logo span {
+	font-family: Broadway;
+	font-size: 1.4em;
+	color: white;
+}
+
+div #logo a {
+	text-decoration: none;
+}
+
+div #logo a:visited {
+	color: none;
+}
+
+div #logo a:active {
+	color: none;
+}
+
+div #logo a:hover {
+	color: none;
+}
+
+div #user {
+	float: right;
+	padding-top: 10px;
+	padding-right: 150px;
+}
+
+div #user span {
+	font-family: arial;
+	color:white;
+}
+
+table #separate td {
+	width: 500px;
+}
+
+/* create album */
+.photos{
+	padding-left: 57px;
+}
+.photos div{
+	margin-bottom: 35px;
+}
+
+#story {
+	height: 150px;
+	overflow: auto;
+}
