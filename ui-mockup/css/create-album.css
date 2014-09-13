@@ -7,7 +7,6 @@ html {
 body {position:absolute; top:0; bottom:0; right:0; left:0; margin: 0;padding: 0;}
 
 .topbar {
-	height: 45px;
 	width: 100%;
 	background-color: #2EB82E;
 	position: fixed;
@@ -25,19 +24,19 @@ body {position:absolute; top:0; bottom:0; right:0; left:0; margin: 0;padding: 0;
 
 #footer {
 	border-top: 1px solid grey;
-	height: 60px;
 	background-color: #82D482;
 }
 
 #footer div {
-	padding-top: 20px;
+	padding-top: 2%;
 	padding-left: 10%;
 }
 
 div #logo {
 	float: left;
-	padding-top: 10px;
-	padding-left: 150px;
+	padding-top: 0.7%;
+	padding-left: 15%;
+	padding-bottom: 0.7%;
 }
 
 div #logo span {
@@ -64,8 +63,8 @@ div #logo a:hover {
 
 div #user {
 	float: right;
-	padding-top: 10px;
-	padding-right: 150px;
+	padding-top: 0.7%;
+	padding-right: 15%;
 }
 
 div #user span {
