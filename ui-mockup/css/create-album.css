@@ -14,6 +14,8 @@ body {position:absolute; top:0; bottom:0; right:0; left:0; margin: 0;padding: 0;
 	z-index: 1;
 }
 
+
+
 #content {
 	width: 100%;
 	margin: 0;
@@ -32,11 +34,19 @@ body {position:absolute; top:0; bottom:0; right:0; left:0; margin: 0;padding: 0;
 	padding-left: 10%;
 }
 
-div #logo {
+div #logo, .topbar .menu {
 	float: left;
 	padding-top: 0.7%;
 	padding-left: 15%;
 	padding-bottom: 0.7%;
+}
+
+.topbar .menu{
+    padding-left: 30px;
+    padding-top: 0.9%;
+}
+.topbar .menu a{
+    color: white;
 }
 
 div #logo span {
@@ -74,6 +84,17 @@ div #user span {
 
 table #separate td {
 	width: 500px;
+}
+
+.notifynumber{
+    background-color: #ff4326;
+    border-radius: 9px;
+    float: right;
+    text-align: center;
+    padding-left: 4px;
+    padding-right: 5px;
+    margin-left: 5px;
+    border: none;
 }
 
 /* create album */
