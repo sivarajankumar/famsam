@@ -1,0 +1,124 @@
+html { 
+	height:100%; 
+	margin: 0;
+    padding: 0;
+}
+
+body {position:absolute; top:0; bottom:0; right:0; left:0; margin: 0;padding: 0;}
+
+.topbar {
+	width: 100%;
+	background-color: #2EB82E;
+	position: fixed;
+	display:block;
+	z-index: 1;
+}
+
+#content {
+	width: 100%;
+	margin: 0;
+	padding-top: 54px;
+	min-height:100%;
+	display: block;
+}
+
+#footer {
+	border-top: 1px solid grey;
+	background-color: #82D482;
+}
+
+#footer div {
+	padding-top: 2%;
+	padding-left: 10%;
+}
+
+div #logo, .topbar .menu {
+	float: left;
+	padding-top: 0.7%;
+	padding-left: 15%;
+	padding-bottom: 0.7%;
+}
+
+.topbar .menu{
+    padding-left: 2%;
+    padding-top: 0.9%;
+}
+.topbar .menu a{
+    color: white;
+}
+
+div #logo span {
+	font-family: Broadway;
+	font-size: 1.4em;
+	color: white;
+}
+
+div #logo a {
+	text-decoration: none;
+}
+
+div #logo a:visited {
+	color: white;
+}
+
+div #logo a:active {
+	color: white;
+}
+
+div #logo a:hover {
+	color: white;
+}
+
+div #user {
+	float: right;
+	padding-top: 0.7%;
+	padding-right: 15%;
+}
+
+div #user span {
+	font-family: arial;
+	color:white;
+}
+
+table #separate td {
+	width: 500px;
+}
+
+.notifynumber{
+    background-color: #ff4326;
+    border-radius: 9px;
+    float: right;
+    text-align: center;
+    padding-left: 4px;
+    padding-right: 5px;
+    border: none;
+    color: white;
+}
+
+/* create album */
+.photos{
+	padding-left: 57px;
+}
+
+.photos div.photo, .photos div.add{
+	padding-top: 7px;
+	height: 153px;
+	text-align: center;
+	margin-bottom: 35px;
+}
+/*
+.photos div.photo:hover{
+	box-shadow: inset 0px 0px 5px #c2c2c2;
+}
+*/
+input.cb{
+	visibility: hidden;
+}
+
+.photos div.photo:hover input.cb{
+	visibility: visible;
+}
+
+span.delbadimg{
+	font-size: 13px;
+}
