@@ -2,6 +2,7 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="css/album-detail.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div class="topbar">
@@ -28,20 +29,69 @@
 			<div class="col-xs-3"><br/>
 				<center><img src="img/avatar.jpg" class="img-responsive" alt="Responsive image" style="border: 4px solid #E6E6E6"><br/>
 					<a href="#"><span id="name" style="color:blue;font-size:1.2em"><b>To Dinh Tan</b></span></a>
+                    <p>
+                        Birthdate: 01-18-1993<br/>
+                        Sex: Male<br/>
+                    </p>
 				</center>
 			</div>
-			<div class="col-xs-6">
-				<center>
-					<h3 style="font-family: Broadway">Singapore Tour</h3>
-					<p id="date"><i>Uploaded at 7:48 AM, 09/11/2014</i></p>
-					<p id="story">I had been mischievous and had messed up an expensive jar of my father's 4711 pale-green scented brilliantine.<br/> My father had a violent temper, but that evening his rage went through the roof. He took me by the scruff of the neck from the house to this well and held me over it. How could my ears have been so tough that they were not ripped off, dropping me into that well?<br/> Fifty years later, in the 1970s, I read in Scientific American an article explaining how pain and shock release neuropeptides in the brain, stamping the new experience into the brain cells and thus ensuring that the experience would be remembered for a long time afterwards.</p>
-				</center>
+			<div class="col-xs-9">
+                <ul id="myTab" class="nav nav-tabs">
+                    <li class="active"><a href="#home" data-toggle="tab">
+                        Tutorial Point Home</a>
+                    </li>
+                    <li><a href="#ios" data-toggle="tab">iOS</a></li>
+                    <li class="dropdown">
+                        <a href="#" id="myTabDrop1" class="dropdown-toggle"
+                           data-toggle="dropdown">Java <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+                            <li><a href="#jmeter" tabindex="-1" data-toggle="tab">
+                                jmeter</a>
+                            </li>
+                            <li><a href="#ejb" tabindex="-1" data-toggle="tab">
+                                ejb</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade in active" id="home">
+                        <p>Tutorials Point is a place for beginners in all technical areas.
+                            This website covers most of the latest technoligies and explains
+                            each of the technology with simple examples. You also have a
+                            <b>tryit</b> editor, wherein you can edit your code and
+                            try out different possibilities of the examples.</p>
+                    </div>
+                    <div class="tab-pane fade" id="ios">
+                        <p>iOS is a mobile operating system developed and distributed by Apple
+                            Inc. Originally released in 2007 for the iPhone, iPod Touch, and
+                            Apple TV. iOS is derived from OS X, with which it shares the
+                            Darwin foundation. iOS is Apple's mobile version of the
+                            OS X operating system used on Apple computers.</p>
+                    </div>
+                    <div class="tab-pane fade" id="jmeter">
+                        <p>jMeter is an Open Source testing software. It is 100% pure
+                            Java application for load and performance testing.</p>
+                    </div>
+                    <div class="tab-pane fade" id="ejb">
+                        <p>Enterprise Java Beans (EJB) is a development architecture
+                            for building highly scalable and robust enterprise level
+                            applications to be deployed on J2EE compliant
+                            Application Server such as JBOSS, Web Logic etc.
+                        </p>
+                    </div>
+                </div>
+                <script>
+                    $(function () {
+                        $('#myTab li:eq(1) a').tab('show');
+                    });
+                </script>
 			</div>
-			<div class="col-xs-3"></div>
 		</div>
 	</div>
 	<div id="footer">
-		<div><span>Copyright by <a href="#">FAMSAM team</a>. All Rights Reserved.</span><div>
+		<div><span>Copyright by <a href="#">FAMSAM team</a>. All Rights Reserved.</span></div>
 		</div>
 	</body>
-	</html>
+</html>
