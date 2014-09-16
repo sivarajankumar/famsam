@@ -1,0 +1,9 @@
+div.photo-container div{
+    margin-bottom: 20px;
+}
+
+div.photo-container{
+    height: 268px;
+    overflow-y: auto;
+}
+

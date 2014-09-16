@@ -1,0 +1,53 @@
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/upload-photos.css" rel="stylesheet">
+<link href="css/font-awesome.min.css" rel="stylesheet">
+<div class="modal-header">
+    <h3 class="modal-title">Upload Photos</h3>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <form role="form">
+                <div class="form-group">
+                    <input type="file" id="exampleInputFile" style="width: 100%">
+
+                </div>
+                <div class="form-group">
+                    <label for="txtDescription">Description</label>
+                    <textarea class="form-control" id="txtDescription" placeholder="What is your photo about?"></textarea>
+                </div>
+                <div style="text-align: center; padding-top: 20px;">
+                    <button class="btn btn-primary btn-default"><i class="fa fa-plus"></i> Add</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 photo-container">
+            <div class="col-md-4 col-lg-2 col-sm-3 col-xs-6">
+                <img src="img/sample140.svg">
+            </div>
+            <div class="col-md-4 col-lg-2 col-sm-3 col-xs-6">
+                <img src="img/sample140.svg">
+            </div>
+            <div class="col-md-4 col-lg-2 col-sm-3 col-xs-6">
+                <img src="img/sample140.svg">
+            </div>
+            <div class="col-md-4 col-lg-2 col-sm-3 col-xs-6">
+                <img src="img/sample140.svg">
+            </div>
+            <div class="col-md-4 col-lg-2 col-sm-3 col-xs-6">
+                <img src="img/sample140.svg">
+            </div>
+        </div>
+    </div>
+    <div style="margin-top: 30px;">
+        <div class="progress">
+            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                <span class="sr-only">40% Complete (success)</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">Upload</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>
