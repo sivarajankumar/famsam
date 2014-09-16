@@ -2,3 +2,6 @@
 2. 1 album thêm ngẫu nhiên thì nàm trong 'Untitled Story'.
 3. 1 photo them ngẫu nhiên thì nằm trong 'Untitled Album'.
 4.t
+
+Ideas
+1. làm timeline cho story
