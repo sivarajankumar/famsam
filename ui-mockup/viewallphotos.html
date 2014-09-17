@@ -2,11 +2,9 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="css/album-detail.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <script>
-        $(function() {
-            $("#myTab").tabs();
-        });
-    </script>
+    <script src="lib/jquery-2.1.1.min.js"></script>
+    <script src="lib/jquery-ui.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div class="topbar">
@@ -46,10 +44,15 @@
                     <li><a href="#photos" role="tab" data-toggle="tab">Photos(20)</a></li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane fade active in" id="stories">Stories</div>
-                    <div class="tab-pane fade" id="albums">Albums</div>
-                    <div class="tab-pane fade" id="photos">Photos</div>
+                    <div class="tab-pane active in" id="stories">Stories</div>
+                    <div class="tab-pane" id="albums">Albums</div>
+                    <div class="tab-pane" id="photos">Photos</div>
                 </div>
+                <script>
+                    $(function() {
+                        $("#myTab").tabs();
+                    });
+                </script>
 			</div>
 		</div>
 	</div>
