@@ -5,18 +5,18 @@
     <h3 class="modal-title">Upload Photos</h3>
 </div>
 <div class="modal-body">
-    <div class="row">
+    <div class="row" ng-hide="uploadForm.upload">
         <div class="col-sm-3 col-md-3 col-lg-3">
             <form role="form">
                 <div class="form-group">
-                    <input type="file" id="exampleInputFile" multiple style="width: 100%" ng-disabled="uploadForm.upload">
+                    <input type="file" id="exampleInputFile" multiple style="width: 100%">
                 </div>
                 <div class="form-group">
                     <label for="txtDescription">Description</label>
-                    <textarea class="form-control" id="txtDescription" placeholder="What is your photo about?" ng-disabled="uploadForm.upload"></textarea>
+                    <textarea class="form-control" id="txtDescription" placeholder="What is your photo about?"></textarea>
                 </div>
                 <div style="text-align: center; padding-top: 20px;">
-                    <button class="btn btn-primary btn-default" ng-disabled="uploadForm.upload"><i class="fa fa-plus"></i> Add</button>
+                    <button class="btn btn-primary btn-default"><i class="fa fa-plus"></i> Add</button>
                 </div>
             </form>
         </div>
@@ -55,9 +55,11 @@
     </div>
     <div style="margin-top: 30px;" ng-show="uploadForm.upload">
         <progressbar animate="false" value="uploadForm.progress" max="uploadForm.max" type="success"><b>{{uploadForm.progress}}%</b></progressbar>
+        <div align="center" ng-show="uploadForm.complete">Upload Photo(s) successfully!</div>
     </div>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="upload()">Upload</button>
-    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-primary" ng-click="upload()" ng-hide="uploadForm.upload">Upload</button>
+    <button class="btn btn-primary" ng-click="ok()" ng-show="uploadForm.complete">OK</button>
+    <button class="btn btn-warning" ng-click="cancel()" ng-hide="uploadForm.complete">Cancel</button>
 </div>

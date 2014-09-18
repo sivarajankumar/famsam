@@ -33,8 +33,9 @@ function ModalInstanceCtrl($scope, $modalInstance, $interval) {
         $scope.uploadForm.upload = true;
         intervalPromise = $interval(function(){
             if ($scope.uploadForm.progress < $scope.uploadForm.max)
-                $scope.uploadForm.progress = $scope.uploadForm.progress + 5;
+                $scope.uploadForm.progress = $scope.uploadForm.progress + 20;
             else {
+                if (intervalPromise) $interval.cancel(intervalPromise);
                 $scope.uploadForm.complete = true;
             }
         }, 1000)
@@ -43,4 +44,7 @@ function ModalInstanceCtrl($scope, $modalInstance, $interval) {
         if (intervalPromise) $interval.cancel(intervalPromise);
         $modalInstance.dismiss('cancel');
     };
+    $scope.ok = function(){
+        $modalInstance.close();
+    }
 }
