@@ -1,3 +1,7 @@
 ﻿1. 1 album nàm trong nhiều story?
 Ideas
 1. làm timeline cho story
+
+Usecase
+1. Remove story of another member
+ ---> include?????
