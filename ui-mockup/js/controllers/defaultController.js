@@ -8,7 +8,7 @@ function BaseCtrl($scope, Session, localStorageService) {
             Session.token = localSession.token;
         }
     }
-    $scope.session = Session;
+    $scope.session = Session;//ViewBag
 }
 
 function LoginCtrl($scope, Session, $state, localStorageService) {

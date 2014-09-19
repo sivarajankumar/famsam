@@ -1,15 +1,15 @@
-function CreateAlbumCtrl($scope, $modal, $log){
-    $scope.uploadPhoto = function (){
+function CreateAlbumCtrl($scope, $modal, $log) {
+    $scope.uploadPhoto = function () {
         var modalInstance = $modal.open({
             templateUrl: 'partials/upload-photos.html',
-            controller: ModalInstanceCtrl,
+            controller: AddPhotosCtrl,
             size: 'lg',
             backdrop: 'static'
             /*resolve: {
-                session: function () {
-                    return $scope.session;
-                }
-            }*/
+             session: function () {
+             return $scope.session;
+             }
+             }*/
         });
 
         modalInstance.result.then(function (selectedItem) {
@@ -20,18 +20,19 @@ function CreateAlbumCtrl($scope, $modal, $log){
     };
 }
 
-function ModalInstanceCtrl($scope, $modalInstance, $interval) {
+function AddPhotosCtrl($scope, $modalInstance, $interval) {
     $scope.uploadForm = {
         upload: false,
         progress: 0,
         max: 100,
-        complete: false
+        complete: false,
+        files: []
     };
 
     var intervalPromise;
-    $scope.upload = function(){
+    $scope.upload = function () {
         $scope.uploadForm.upload = true;
-        intervalPromise = $interval(function(){
+        intervalPromise = $interval(function () {
             if ($scope.uploadForm.progress < $scope.uploadForm.max)
                 $scope.uploadForm.progress = $scope.uploadForm.progress + 20;
             else {
@@ -44,7 +45,27 @@ function ModalInstanceCtrl($scope, $modalInstance, $interval) {
         if (intervalPromise) $interval.cancel(intervalPromise);
         $modalInstance.dismiss('cancel');
     };
-    $scope.ok = function(){
+    $scope.ok = function () {
         $modalInstance.close();
-    }
+    };
+    $scope.selectFile = function (files) {
+        $scope.$apply(function () {
+            $scope.invalidFile = false;
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                var reader = new FileReader();
+                reader.onload = (function (theFile) {
+                    return function (e) {
+                        var aFile = {
+                            src: e.target.result,
+                            filename: file.name
+                        };
+                        $scope.uploadForm.files.push(aFile);
+                    }
+                })(file);
+
+                reader.readAsDataURL(file);
+            }
+        });
+    };
 }
