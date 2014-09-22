@@ -24,7 +24,7 @@
         </div>
         <div class="col-sm-9 col-md-9 col-lg-9 photo-container" >
             <div class="col-md-4 col-lg-3 col-sm-6 col-xs-12" ng-repeat="file in uploadForm.files">
-                <div title="{{file.filename}}" style="background-image: url('{{file.src}}');
+                <div id="{{file.filename}}" title="{{file.filename}}" style="background-image: url('{{file.src}}');
                     background-size: contain;background-position: center center;
                     width: 100%; height: 100px; background-repeat: no-repeat" >
                 </div>
