@@ -1,5 +1,5 @@
 function BaseCtrl($scope, Session, localStorageService) {
-    if (!Session.username) {
+    /* if (!Session.username) {
         var localSession = localStorageService.get('Session');
         if (localSession) {
             Session.username = localSession.username;
@@ -7,7 +7,7 @@ function BaseCtrl($scope, Session, localStorageService) {
             Session.name = localSession.name;
             Session.token = localSession.token;
         }
-    }
+    }*/
     $scope.session = Session;//ViewBag
 }
 
@@ -27,7 +27,7 @@ function LoginCtrl($scope, Session, $state, localStorageService) {
 
                 //save session to scope
                 $scope.session = Session;
-                $state.go('allphotos');
+                $state.go('home.allphotos');
             } else {
                 $scope.user.loginFail = true;
             }
