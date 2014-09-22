@@ -5,3 +5,10 @@ Ideas
 Usecase
 1. Remove story of another member
  ---> include?????
+
+DB
+2. Neighborhood: 2 family giống nhau?
+
+Bad image: blur --> out of focus, linear blurr
+
+related by like: #hashtag
