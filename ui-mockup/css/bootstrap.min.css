@@ -1120,12 +1120,12 @@ input, button, select, textarea {
 }
 
 a {
-    color: #428bca;
+    color: #2EC142;
     text-decoration: none
 }
 
 a:hover, a:focus {
-    color: #2a6496;
+    color: #2EC142;
     text-decoration: underline
 }
 
@@ -3133,14 +3133,14 @@ textarea.input-lg, select[multiple].input-lg {
 
 .btn-primary {
     color: #fff;
-    background-color: #428bca;
-    border-color: #357ebd
+    background-color: #2EC142;
+    border-color: #2EC142
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
     color: #fff;
-    background-color: #3071a9;
-    border-color: #285e8e
+    background-color: #259A35;
+    border-color: #259A35
 }
 
 .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
@@ -3976,7 +3976,7 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
     color: #fff;
-    background-color: #428bca
+    background-color: #2EC142
 }
 
 .nav-stacked > li {
@@ -4421,8 +4421,8 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
 }
 
 .navbar-default {
-    background-color: #f8f8f8;
-    border-color: #e7e7e7
+    background-color: #2EC142;
+    border-color: #2EC142
 }
 
 .navbar-default .navbar-brand {
@@ -4439,7 +4439,7 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
 }
 
 .navbar-default .navbar-nav > li > a {
-    color: #777
+    color: white
 }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
@@ -4500,15 +4500,15 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
 }
 
 .navbar-default .navbar-link {
-    color: #777
+    color: white
 }
 
 .navbar-default .navbar-link:hover {
-    color: #333
+    color: white
 }
 
 .navbar-default .btn-link {
-    color: #777
+    color: white
 }
 
 .navbar-default .btn-link:hover, .navbar-default .btn-link:focus {
@@ -4883,7 +4883,7 @@ a.badge:hover, a.badge:focus {
 }
 
 a.list-group-item.active > .badge, .nav-pills > .active > a > .badge {
-    color: #428bca;
+    color: #259A35;
     background-color: #fff
 }
 
@@ -5623,13 +5623,13 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover, a.list-g
 }
 
 .panel-info {
-    border-color: #bce8f1
+    border-color: #2EC142
 }
 
 .panel-info > .panel-heading {
     color: #31708f;
-    background-color: #d9edf7;
-    border-color: #bce8f1
+    background-color: #2EC142;
+    border-color: #26C113
 }
 
 .panel-info > .panel-heading + .panel-collapse > .panel-body {

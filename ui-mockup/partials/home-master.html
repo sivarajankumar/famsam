@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-xs-3">
+        <center><img src="img/avatar.jpg" class="img-responsive" alt="Responsive image" style="border: 4px solid #E6E6E6"><br/>
+            <a href="#"><span id="name" style="color:#2EC142;font-size:1.2em"><b>{{session.name}}</b></span></a>
+            <p>
+                Birthdate: 01-18-1993<br/>
+                Sex: Male<br/>
+            </p>
+        <ul ng-show="session.username" class="nav nav-pills nav-stacked">
+            <li class="active">
+                <a href="#">
+                    <span class="badge pull-right">3</span>
+                    Families
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Happy Family 1
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Happy Family 2
+                </a>
+            </li>
+            <li class="active">
+                <a href="#">
+                    <span class="badge pull-right">10</span>
+                    Stories
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Toy Story 1
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Toy Story 2
+                </a>
+            </li>
+            <li class="active">
+                <a href="#">
+                    <span class="badge pull-right">12</span>
+                    Albums
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Album 1
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Album 2
+                </a>
+            </li>
+        </ul></center>
+    </div>
+    <div ui-view class="col-xs-9"></div>
+</div>
