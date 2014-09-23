@@ -43,7 +43,11 @@
                             <div class="col-xs-2"><b>Sex</b></div>
                             <div ng-show="!isEditBasic" class="col-xs-9">Male</div>
                             <div ng-show="isEditBasic" class="col-xs-9">
-                                <input type="text" class="form-control">
+                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="male" checked>
+                                Male
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="female">
+                                Female
                             </div>
                         </div>
                     </li>

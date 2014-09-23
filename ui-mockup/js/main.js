@@ -1,4 +1,4 @@
-var app = angular.module("FAMSAM", ["ui.router", "SessionService", 'ui.bootstrap', 'LocalStorageModule']);
+var app = angular.module("FAMSAM", ["ui.router", "SessionService", 'ui.bootstrap', 'LocalStorageModule', 'FormDirective']);
 
 //route config
 app.config(function ($stateProvider, $urlRouterProvider) {
@@ -41,6 +41,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('home.personal-info',{
             url: '/personal-info',
             templateUrl: 'partials/personal-info.html'
+        })
+        .state('home.album-detail',{
+            url: '/album-detail',
+            templateUrl: 'partials/album-detail.html'
         })
     ;
 });
