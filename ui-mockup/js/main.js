@@ -34,5 +34,13 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: 'partials/create-album.html',
             controller: CreateAlbumCtrl
         })
+        .state('home.family-home',{
+            url: '/family-home',
+            templateUrl: 'partials/family-home.html'
+        })
+        .state('home.personal-info',{
+            url: '/personal-info',
+            templateUrl: 'partials/personal-info.html'
+        })
     ;
 });

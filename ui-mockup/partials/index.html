@@ -4,7 +4,7 @@
     <div class="col-xs-5">
         <h2 style="font-family: Broadway">Sign in</h2><br/><br/>
 
-        <form class="form-horizontal" role="form" novalidate ng-submit="signin(frmLogin.$valid)" name="frmLogin">
+        <form onload="document.getElementsByName('txtUsername').focus()" class="form-horizontal" role="form" novalidate ng-submit="signin(frmLogin.$valid)" name="frmLogin">
             <div class="alert alert-danger" role="alert" ng-show="user.loginFail">
                 <strong>Login Fail!</strong> Wrong username or password!
                 Hint: mrbean/mrbean
