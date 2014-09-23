@@ -1,91 +1,139 @@
 <div class="row">
     <div class="col-xs-11">
-        <div class="panel panel-info">
+        <div class="panel panel-info" ng-init="isEditBasic=false">
             <div class="panel-heading">
-                <h3 class="panel-title" style="color: white">Basic Information</h3>
+                <h3 class="panel-title" style="color: white">
+                    <div class="row">
+                        <div class="col-xs-10">Basic Information</div>
+                        <div style="text-align: center; font-weight: bold" class="col-xs-2"><a style="color: white" ng-click="isEditBasic=true"><span class="glyphicon glyphicon-pencil"></span> Edit</a></div>
+                    </div>
+                </h3>
             </div>
             <div class="panel-body">
                 <ul class="list-group">
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-2"><b>Firstname</b></div>
-                            <div class="col-xs-9">Tan</div>
-                            <div class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-pencil"></span></a></div>
+                            <div ng-show="!isEditBasic" class="col-xs-9">Tan</div>
+                            <div ng-show="isEditBasic" class="col-xs-9">
+                                <input type="text" class="form-control">
+                            </div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-2"><b>Lastname</b></div>
-                            <div class="col-xs-9">To Dinh</div>
-                            <div class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-pencil"></span></a></div>
+                            <div ng-show="!isEditBasic" class="col-xs-9">To Dinh</div>
+                            <div ng-show="isEditBasic" class="col-xs-9">
+                                <input type="text" class="form-control">
+                            </div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-2"><b>About</b></div>
-                            <div class="col-xs-9">Who i am?</div>
-                            <div class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-pencil"></span></a></div>
+                            <div ng-show="!isEditBasic" class="col-xs-9">Who i am?</div>
+                            <div ng-show="isEditBasic" class="col-xs-9">
+                                <input type="text" class="form-control">
+                            </div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-2"><b>Sex</b></div>
-                            <div class="col-xs-9">Male</div>
-                            <div class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-pencil"></span></a></div>
+                            <div ng-show="!isEditBasic" class="col-xs-9">Male</div>
+                            <div ng-show="isEditBasic" class="col-xs-9">
+                                <input type="text" class="form-control">
+                            </div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-2"><b>From</b></div>
-                            <div class="col-xs-9">HCMC</div>
-                            <div class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-pencil"></span></a></div>
+                            <div ng-show="!isEditBasic" class="col-xs-9">HCMC</div>
+                            <div ng-show="isEditBasic" class="col-xs-9">
+                                <input type="text" class="form-control">
+                            </div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-2"><b>Work at</b></div>
-                            <div class="col-xs-9">FPT University</div>
-                            <div class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-pencil"></span></a></div>
+                            <div ng-show="!isEditBasic" class="col-xs-9">FPT University</div>
+                            <div ng-show="isEditBasic" class="col-xs-9">
+                                <input type="text" class="form-control">
+                            </div>
                         </div>
                     </li>
                 </ul>
+                <div class="row">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-2">
+                        <a style="font-weight: bold" ng-show="isEditBasic" ng-click="isEditBasic=false"><span class="glyphicon glyphicon-ok"></span> Done</a>
+                    </div>
+                    <div class="col-xs-8">
+                        <a style="color: #B80000; font-weight: bold" ng-show="isEditBasic" ng-click="isEditBasic=false"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="panel panel-info">
+        <div class="panel panel-info" ng-init="isEditAdv=false">
             <div class="panel-heading">
-                <h3 class="panel-title" style="color: white">Advanced Information</h3>
+                <h3 class="panel-title" style="color: white">
+                    <div class="row">
+                        <div class="col-xs-10">Advanced Information</div>
+                        <div style="text-align: center; font-weight: bold" class="col-xs-2"><a style="color: white" ng-click="isEditAdv=true"><span class="glyphicon glyphicon-pencil"></span> Edit</a></div>
+                    </div>
+                </h3>
             </div>
             <div class="panel-body">
                 <ul class="list-group">
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-2"><b>Birthdate</b></div>
-                            <div class="col-xs-9">18-01-1993</div>
-                            <div class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-pencil"></span></a></div>
+                            <div ng-show="!isEditAdv" class="col-xs-9">18-01-1993</div>
+                            <div ng-show="isEditAdv" class="col-xs-9">
+                                <input type="text" class="form-control">
+                            </div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-2"><b>Phone</b></div>
-                            <div class="col-xs-9">None</div>
-                            <div class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-pencil"></span></a></div>
+                            <div ng-show="!isEditAdv" class="col-xs-9">None</div>
+                            <div ng-show="isEditAdv" class="col-xs-9">
+                                <input type="text" class="form-control">
+                            </div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-2"><b>Address</b></div>
-                            <div class="col-xs-9">None</div>
-                            <div class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-pencil"></span></a></div>
+                            <div ng-show="!isEditAdv" class="col-xs-9">None</div>
+                            <div ng-show="isEditAdv" class="col-xs-9">
+                                <input type="text" class="form-control">
+                            </div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-2"><b>Favourite</b></div>
-                            <div class="col-xs-9">None</div>
-                            <div class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-pencil"></span></a></div>
+                            <div ng-show="!isEditAdv" class="col-xs-9">None</div>
+                            <div ng-show="isEditAdv" class="col-xs-9">
+                                <input type="text" class="form-control">
+                            </div>
                         </div>
                     </li>
                 </ul>
+                <div class="row">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-2">
+                        <a style="font-weight: bold" ng-show="isEditAdv" ng-click="isEditAdv=false"><span class="glyphicon glyphicon-ok"></span> Done</a>
+                    </div>
+                    <div class="col-xs-8">
+                        <a style="color: #B80000; font-weight: bold" ng-show="isEditAdv" ng-click="isEditAdv=false"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
