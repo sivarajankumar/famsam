@@ -46,5 +46,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: '/album-detail',
             templateUrl: 'partials/album-detail.html'
         })
+        .state('home.story-detail',{
+            url: '/story-detail',
+            templateUrl: 'partials/story-detail.html'
+        })
     ;
 });

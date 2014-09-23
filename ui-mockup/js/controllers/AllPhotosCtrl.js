@@ -29,13 +29,11 @@ function PhotoCtrl($scope, $modalInstance) {
     $scope.addSlide = function(m) {
         if(m==1) {
             slides.push({
-                image: 'img/avatar.jpg',
-                text: 'demo hehe'
+                image: 'img/avatar.jpg'
             });
         } else {
             slides.push({
-                image: 'img/demoviewphoto.jpg',
-                text: 'demo hehe'
+                image: 'img/demoviewphoto.jpg'
             });
         }
     };
