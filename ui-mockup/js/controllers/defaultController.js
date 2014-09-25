@@ -27,7 +27,7 @@ function LoginCtrl($scope, Session, $state, localStorageService) {
 
                 //save session to scope
                 $scope.session = Session;
-                $state.go('home.allphotos');
+                $state.go('home.newfeed');
             } else {
                 $scope.user.loginFail = true;
             }
