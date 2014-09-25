@@ -49,23 +49,24 @@ function AddPhotosCtrl($scope, $modalInstance, $interval) {
         $modalInstance.close();
     };
     $scope.selectFile = function (files) {
-        $scope.$apply(function () {
-            $scope.invalidFile = false;
-            for (var i = 0; i < files.length; i++) {
-                var file = files[i];
-                var reader = new FileReader();
-                reader.onload = (function (theFile) {
-                    return function (e) {
-                        var aFile = {
-                            src: e.target.result,
-                            filename: file.name
-                        };
-                        $scope.uploadForm.files.push(aFile);
-                    }
-                })(file);
+        console.log('xxxx');
+        $scope.invalidFile = false;
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var reader = new FileReader();
+            reader.onload = (function (theFile) {
+                return function (e) {
+                    var aFile = {
+                        src: e.target.result,
+                        filename: file.name
+                    };
+                    $scope.uploadForm.files.push(aFile);
+                    $scope.$apply();
+                }
+            })(file);
 
-                reader.readAsDataURL(file);
-            }
-        });
+            reader.readAsDataURL(file);
+        }
+
     };
 }
