@@ -11,4 +11,9 @@ DB
 
 Bad image: blur --> out of focus, linear blurr
 
-related by like: #hashtag
+màu nhạt
+feed k có về album/story
+create new story without finish
+
+xem project component dv client spa
+phóng to erd
