@@ -50,5 +50,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: '/story-detail',
             templateUrl: 'partials/story-detail.html'
         })
+        .state('home.newfeed',{
+            url: '/newfeed',
+            templateUrl: 'partials/newfeed.html'
+        })
     ;
 });
