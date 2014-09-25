@@ -1,30 +1,34 @@
-<div class="modal-body" style="height: 100%">
-    <div>
-        <div>
-            <carousel interval="myInterval">
-                <slide ng-repeat="slide in slides" active="slide.active">
-                    <img width="500" height="500" ng-src="{{slide.image}}" style="margin:auto;">
-                </slide>
-            </carousel>
-        </div>
-    </div><br/>
-    <div>
-        <div style="text-align: center">
-            by <a style="font-weight: bold" href="#">To Dinh Tan</a> <i style="color:grey">- 2 hours ago.</i>
-            <p id="caption">My new photo on trip</p>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <img src="img/avatar.jpg" alt="Responsive image" width="40" height="40">
-                <a style="font-weight: bold" href="#">To Dinh Tan</a> very beautiful<br/><br/>
-                <form class="form-horizontal" role="form">
-                    <div class="form-group">
-                        <img class="col-sm-1" src="img/avatar.jpg" alt="Responsive image" width="40" height="40">
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="Write comment here..">
+<div class="modal-body" style=" width: 900px">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="thumbnail">
+                <div id="img" style="width: 100%; height: 400px; background-color: black">
+                    <center><img style="height: 100%" src="img/demoviewphoto.jpg"></center>
+                </div>
+                <div class="caption">
+                    <div>
+                        <div style="text-align: center">
+                            by <a style="font-weight: bold" href="#">To Dinh Tan</a> <i style="color:grey">- 2 hours ago.</i>
+                            <p id="caption">My new photo on trip</p>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <img src="img/avatar.jpg" alt="Responsive image" width="40" height="40">
+                                <a style="font-weight: bold" href="#">To Dinh Tan</a> very beautiful<br/><br/>
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <div class="col-xs-1">
+                                            <img src="img/avatar.jpg" alt="Responsive image" width="40" height="40">
+                                        </div>
+                                        <div class="col-xs-10">
+                                            <input type="text" class="form-control" placeholder="Write comment here..">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
