@@ -14,6 +14,7 @@ namespace famsam.serverapi.Models
         public string Password { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
+        public string Sex { get; set; }
         public string About { get; set; }
         public string WorkAt { get; set; }
         public string Birthday { get; set; }

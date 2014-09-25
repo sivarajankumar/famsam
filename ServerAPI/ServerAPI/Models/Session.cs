@@ -9,6 +9,8 @@ namespace famsam.serverapi.Models
     {
         public long Id { get; set; }
         public string Token { get; set; }
+
+        public User User { get; set; }
         public DateTime ExpiredDate { get; set; }
     }
 }

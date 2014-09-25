@@ -108,13 +108,16 @@
     <Compile Include="App_Start\MyHttpControllerHandler.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AlbumsController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\PhotosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="DTO\ApiResult.cs" />
     <Compile Include="Models\Family.cs" />
     <Compile Include="Models\FamsamDBContext.cs" />
     <Compile Include="Models\GeneralPost.cs" />
+    <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="Models\Session.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserActivity.cs" />
