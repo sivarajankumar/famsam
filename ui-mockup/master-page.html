@@ -25,7 +25,6 @@
                     <li><a ui-sref="home.create-story">Create Story</a></li>
                     <li><a ui-sref="home.creat-album">Create Album</a></li>
                     <li><a ui-sref="home.allphotos">Manage Photos</a></li>
-                    <li><a>Notifies&nbsp;<span class="label label-danger">3</span></a></li>
                 </ul>
                 <form class="navbar-form navbar-left" role="search">
                     <div class="input-group">
@@ -35,7 +34,10 @@
                         </span>
                     </div>
                 </form>
-                <p style="color: white" ng-show="session.username" class="navbar-text navbar-right">Welcome, <a ui-sref="home.personal-info" class="navbar-link">{{ session.name }}</a></p>
+                <p style="color: white" ng-show="session.username" class="navbar-text navbar-right">
+                    <span class="glyphicon glyphicon-tags"></span><span class="label label-danger">3</span>
+                    Welcome, <a ui-sref="home.personal-info" class="navbar-link">{{ session.name }}</a>
+                </p>
                 <p ng-hide="session.username" class="navbar-text navbar-right"><a style="color: white" ui-sref="index" class="navbar-link">Login</a></p>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

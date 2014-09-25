@@ -1120,12 +1120,12 @@ input, button, select, textarea {
 }
 
 a {
-    color: #2EC142;
+    color: #4B3F7A;
     text-decoration: none
 }
 
 a:hover, a:focus {
-    color: #2EC142;
+    color: #4B3F7A;
     text-decoration: underline
 }
 
@@ -3133,14 +3133,14 @@ textarea.input-lg, select[multiple].input-lg {
 
 .btn-primary {
     color: #fff;
-    background-color: #2EC142;
-    border-color: #2EC142
+    background-color: #4B3F7A;
+    border-color: #4B3F7A
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
     color: #fff;
-    background-color: #259A35;
-    border-color: #259A35
+    background-color: #3E376E;
+    border-color: #3E376E
 }
 
 .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
@@ -3976,7 +3976,7 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
     color: #fff;
-    background-color: #2EC142
+    background-color: #4B3F7A
 }
 
 .nav-stacked > li {
@@ -4064,7 +4064,7 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
 
 @media (min-width: 768px) {
     .navbar {
-        border-radius: 4px
+        border-radius: 0px
     }
 }
 
@@ -4421,8 +4421,8 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
 }
 
 .navbar-default {
-    background-color: #2EC142;
-    border-color: #2EC142
+    background-color: #4B3F7A;
+    border-color: #4B3F7A
 }
 
 .navbar-default .navbar-brand {
@@ -4883,7 +4883,7 @@ a.badge:hover, a.badge:focus {
 }
 
 a.list-group-item.active > .badge, .nav-pills > .active > a > .badge {
-    color: #259A35;
+    color: #4B3F7A;
     background-color: #fff
 }
 
@@ -5399,7 +5399,8 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover, a.list-g
 }
 
 .panel-body {
-    padding: 15px
+    padding: 15px;
+    background-color: #FAFAFA;
 }
 
 .panel-heading {
@@ -5623,13 +5624,13 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover, a.list-g
 }
 
 .panel-info {
-    border-color: #2EC142
+    border-color: #4B3F7A
 }
 
 .panel-info > .panel-heading {
     color: #31708f;
-    background-color: #2EC142;
-    border-color: #26C113
+    background-color: #4B3F7A;
+    border-color: #4B3F7A
 }
 
 .panel-info > .panel-heading + .panel-collapse > .panel-body {
@@ -5895,7 +5896,7 @@ button.close {
 
 @media (min-width: 768px) {
     .modal-dialog {
-        width: 600px;
+        width: 900px;
         margin: 30px auto
     }
 
