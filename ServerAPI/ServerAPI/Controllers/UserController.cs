@@ -12,6 +12,8 @@ namespace ServerAPI.Controllers
     public class UserController : ApiController
     {
         private FamsamDB db = new FamsamDB();
+        [HttpPost]
+        [ActionName("login")]
         public IHttpActionResult Login([FromBody] UserLoginDTO userLogin)
         {
             ApiResult result = new ApiResult();
@@ -19,7 +21,7 @@ namespace ServerAPI.Controllers
             IQueryable<User> query = from a in db.User
                                      where (a.Email == userLogin.Email && a.Password == userLogin.Password)
                                             select a;
-            User user = query.First<User>();
+            User user = query.FirstOrDefault<User>();
             if (user == null)
             {
                 return Ok(UserErrorResult.LOGIN_FAIL);
@@ -46,13 +48,15 @@ namespace ServerAPI.Controllers
             
         }
 
+        [HttpPost]
+        [ActionName("register")]
         public IHttpActionResult Register([FromBody] User user)
         {
             //check exist email
             IQueryable<User> query = from u in db.User 
                                      where (u.Email == user.Email)
                                      select u;
-            User existUser = query.First<User>();
+            User existUser = query.FirstOrDefault<User>();
             if (existUser == null)
             {
                 //add user to db
