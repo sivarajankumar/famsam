@@ -11,7 +11,7 @@ namespace famsam.serverapi.Models
     {
         public long Id { get; set; }
         public string Description { get; set; }
-        public string LastUpdate { get; set; }
+        public DateTime LastUpdate { get; set; }
         public List<Tag> Tags { get; set; }
         public User Author { get; set; }
     }

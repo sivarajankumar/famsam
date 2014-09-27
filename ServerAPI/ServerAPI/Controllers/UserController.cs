@@ -1,5 +1,6 @@
 ﻿using famsam.serverapi.Models;
 using ServerAPI.Models;
+using ServerAPI.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace ServerAPI.Controllers
         [ActionName("login")]
         public IHttpActionResult Login([FromBody] UserLoginDTO userLogin)
         {
-            ApiResult result = new ApiResult();
+            ApiResult result;
 
             IQueryable<User> query = from a in db.User
                                      where (a.Email == userLogin.Email && a.Password == userLogin.Password)
@@ -24,7 +25,7 @@ namespace ServerAPI.Controllers
             User user = query.FirstOrDefault<User>();
             if (user == null)
             {
-                return Ok(UserErrorResult.LOGIN_FAIL);
+                return Ok(UserApiResult.LoginFail);
             }
             else
             {
@@ -35,12 +36,13 @@ namespace ServerAPI.Controllers
                 session.Token = now.Millisecond + "";
                 session.ExpiredDate = now.AddHours(2);
                 db.Session.Add(session);
+                db.SaveChanges();
 
                 LoginResultContentDTO loginDTO = new LoginResultContentDTO();
                 loginDTO.Message = "login success";
                 loginDTO.Token = session.Token;
 
-                result.Code = "002";
+                result = UserApiResult.LoginSuccess;
                 result.Content = loginDTO;
 
                 return Ok(result);
@@ -61,15 +63,25 @@ namespace ServerAPI.Controllers
             {
                 //add user to db
                 db.User.Add(user);
+                db.SaveChanges();
                 //result
-                return Ok(new ApiResult {Code = "003", Content = "register success"});
+                return Ok();
             }
             else
             {
                 //reg fail
-                return Ok(UserErrorResult.REGISTER_FAIL);
+                return Ok();
             }
             
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 

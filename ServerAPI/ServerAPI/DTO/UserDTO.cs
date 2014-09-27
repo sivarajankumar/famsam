@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ServerAPI.Models
+namespace ServerAPI.DTO
 {
     public class UserLoginDTO
     {
@@ -16,10 +16,20 @@ namespace ServerAPI.Models
         public string Token { get; set; }
     }
 
-    public class UserErrorResult
+    public class UserApiResult
     {
-        public static ApiResult LOGIN_FAIL = new ApiResult { Code = "001", Content = "login fail" };
-        public static ApiResult EMAIL_NOT_EXIST = new ApiResult { Code = "002", Content = "email not exist" };
-        public static ApiResult REGISTER_FAIL = new ApiResult { Code = "0022", Content = "register fail" };
+        public static ApiResult LoginFail { get; private set; }
+        public static ApiResult EmailNotExist { get; private set; }
+        public static ApiResult RegisterFail { get; private set; }
+        public static ApiResult LoginSuccess { get; private set; }
+        public static ApiResult RegisterSuccess { get; private set; }
+
+        static UserApiResult(){
+            LoginFail = new ApiResult("001", "login fail");
+            EmailNotExist = new ApiResult("002", "email not exist");
+            RegisterFail = new ApiResult("0022", "register fail");
+            LoginSuccess = new ApiResult("0012", "login success");
+            RegisterSuccess = new ApiResult("003", "regiseter success");
+        }
     }
 }
