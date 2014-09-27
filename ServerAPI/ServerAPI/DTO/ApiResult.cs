@@ -3,11 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ServerAPI.Models
+namespace ServerAPI.DTO
 {
     public class ApiResult
     {
-        public string Code { get; set; }
+        public string Code { get; private set; }
+        public string Message { get; private set; }
         public dynamic Content { get; set; }
+
+        public ApiResult(string Code, string Message)
+        {
+            this.Code = Code;
+            this.Message = Message;
+        }
+
+        public ApiResult clone()
+        {
+            return new ApiResult(this.Code, this.Message);
+        }
     }
 }

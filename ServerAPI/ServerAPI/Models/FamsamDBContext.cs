@@ -10,13 +10,15 @@ namespace ServerAPI.Models
     public class FamsamDB : DbContext
     {
         //Family
-        public virtual DbSet<Family> Family { get; set; }
-        public virtual DbSet<FamilyRole> FamilyRole { get; set; }
-        public virtual DbSet<NeighborRequest> NeighborRequest { get; set; }
+        public virtual DbSet<Family> Families { get; set; }
+        public virtual DbSet<FamilyRole> FamilyRoles { get; set; }
+        public virtual DbSet<NeighborRequest> NeighborRequests { get; set; }
+       // public virtual DbSet<NeighborHood> NeighborHoods { get; set; }
 
         //Post
         public virtual DbSet<GeneralPost> GeneralPost { get; set; }
         public virtual DbSet<Tag> Tag { get; set; }
+
         /*public virtual DbSet<Story> Story { get; set; }
         public virtual DbSet<Album> Album { get; set; }
         public virtual DbSet<Photo> Photo { get; set; }

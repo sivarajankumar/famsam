@@ -110,6 +110,7 @@
     <Compile Include="Controllers\AlbumsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\PhotosController.cs" />
+    <Compile Include="DTO\PhotoDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

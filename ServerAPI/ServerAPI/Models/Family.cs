@@ -15,7 +15,18 @@ namespace famsam.serverapi.Models
         public DateTime Date { get; set; }
         public string CoverURL { get; set; }
         public string Description { get; set; }
-        public virtual List<Family> Neighbors { get; set; }
+    }
+
+    public class NeighborHood
+    {
+        [Key, ForeignKey("Family"), Column(Order = 0)]
+        public long FamilyId { get; set; }
+        [Key, ForeignKey("Family"), Column(Order = 1)]
+        public long NeighborId { get; set; }
+
+        public Family Family { get; set; }
+        public Family Neighbor { get; set; }
+        public DateTime Date { get; set; }
     }
 
     public class FamilyRole
