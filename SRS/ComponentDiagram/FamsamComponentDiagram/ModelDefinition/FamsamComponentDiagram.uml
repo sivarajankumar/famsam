@@ -41,7 +41,6 @@
             <type_NamedElement>
               <interfaceMoniker
                 Id="e75cb88c-83ef-4d5d-b1ea-1d0cf8fa7237"
-                LastKnownName="ApiController"
                 LastKnownLocation="FamsamComponentDiagram.uml" />
             </type_NamedElement>
           </providedInterface>
@@ -57,15 +56,6 @@
             isComposite="false"
             isService="false"
             isBehavior="false">
-            <suppliersInternal>
-              <dependency
-                Id="fe26b2b4-4363-4919-8faf-5e8e3b63d5f9">
-                <providedInterfaceMoniker
-                  Id="b151acad-4cf7-48e1-98f9-ffafbb9580c2"
-                  LastKnownName="Port1"
-                  LastKnownLocation="FamsamComponentDiagram.uml" />
-              </dependency>
-            </suppliersInternal>
             <type_NamedElement>
               <interfaceMoniker
                 Id="66518324-95cc-41a5-a03d-2bf5c3ec67a3"
@@ -86,7 +76,6 @@
     <packageHasNamedElement>
       <Interface
         Id="e75cb88c-83ef-4d5d-b1ea-1d0cf8fa7237"
-        name="ApiController"
         isAbstract="false"
         isLeaf="false" />
     </packageHasNamedElement>
@@ -117,19 +106,9 @@
             isComposite="false"
             isService="false"
             isBehavior="false">
-            <suppliersInternal>
-              <dependency
-                Id="0fc9c939-0538-4336-b983-3e2e823a71e5">
-                <providedInterfaceMoniker
-                  Id="57512930-f8b5-4493-a5b6-ec1d5f2e547f"
-                  LastKnownName="Port1"
-                  LastKnownLocation="FamsamComponentDiagram.uml" />
-              </dependency>
-            </suppliersInternal>
             <type_NamedElement>
               <interfaceMoniker
                 Id="69feeb5e-fffe-41ef-8e0c-fdcced04b05a"
-                LastKnownName="AJAX"
                 LastKnownLocation="FamsamComponentDiagram.uml" />
             </type_NamedElement>
           </requiredInterface>
@@ -156,19 +135,9 @@
             isComposite="false"
             isService="false"
             isBehavior="false">
-            <suppliersInternal>
-              <dependency
-                Id="60c2bb38-f602-4e1d-8c84-f7cdf7f6b47c">
-                <providedInterfaceMoniker
-                  Id="57512930-f8b5-4493-a5b6-ec1d5f2e547f"
-                  LastKnownName="Port1"
-                  LastKnownLocation="FamsamComponentDiagram.uml" />
-              </dependency>
-            </suppliersInternal>
             <type_NamedElement>
               <interfaceMoniker
                 Id="099892ee-3238-4974-9e87-95328f5ee5b4"
-                LastKnownName="AJAX"
                 LastKnownLocation="FamsamComponentDiagram.uml" />
             </type_NamedElement>
           </requiredInterface>
@@ -178,7 +147,6 @@
     <packageHasNamedElement>
       <Interface
         Id="69feeb5e-fffe-41ef-8e0c-fdcced04b05a"
-        name="AJAX"
         isAbstract="false"
         isLeaf="false" />
     </packageHasNamedElement>
@@ -192,7 +160,6 @@
     <packageHasNamedElement>
       <Interface
         Id="099892ee-3238-4974-9e87-95328f5ee5b4"
-        name="AJAX"
         isAbstract="false"
         isLeaf="false" />
     </packageHasNamedElement>
@@ -234,15 +201,6 @@
             isComposite="false"
             isService="false"
             isBehavior="false">
-            <suppliersInternal>
-              <dependency
-                Id="5b3b5274-b6ff-479a-b158-06b791b12a24">
-                <providedInterfaceMoniker
-                  Id="b6cef1be-1a73-4c62-a796-eaa11669a6a7"
-                  LastKnownName="Port1"
-                  LastKnownLocation="FamsamComponentDiagram.uml" />
-              </dependency>
-            </suppliersInternal>
             <type_NamedElement>
               <interfaceMoniker
                 Id="33f89a6d-0425-468d-8884-72f2cb46ad1c"

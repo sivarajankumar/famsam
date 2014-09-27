@@ -8,17 +8,11 @@
           <providedInterface Id="34866a70-9084-4294-8e85-cd65708c0aae" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
             <elementDefinition Id="57512930-f8b5-4493-a5b6-ec1d5f2e547f" />
             <type_NamedElement>
-              <interfaceMoniker Id="120c45d4-65ab-4475-a676-3efeef56022b" LastKnownName="ApiController" />
+              <interfaceMoniker Id="120c45d4-65ab-4475-a676-3efeef56022b" />
             </type_NamedElement>
           </providedInterface>
           <requiredInterface Id="68ebd141-acf2-471e-a6cc-0338dd60f2d6" name="Port2" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
             <elementDefinition Id="cecd99a7-2519-4708-9b26-5b0779d1abb9" />
-            <suppliersInternal>
-              <dependency Id="c583719e-9808-436a-baf3-ae25a75903e9">
-                <providedInterfaceMoniker Id="788d16fc-89c4-4cde-b223-32b574cb6e4f" LastKnownName="Port1" />
-                <elementDefinition Id="fe26b2b4-4363-4919-8faf-5e8e3b63d5f9" />
-              </dependency>
-            </suppliersInternal>
             <type_NamedElement>
               <interfaceMoniker Id="d6b43144-9e52-4f15-a5ed-1cbb92675199" />
             </type_NamedElement>
@@ -27,7 +21,7 @@
       </component>
     </componentModelHasComponents>
     <modelContainsNamedElements>
-      <Interface Id="120c45d4-65ab-4475-a676-3efeef56022b" name="ApiController" isAbstract="false" isLeaf="false">
+      <Interface Id="120c45d4-65ab-4475-a676-3efeef56022b" isAbstract="false" isLeaf="false">
         <elementDefinition Id="e75cb88c-83ef-4d5d-b1ea-1d0cf8fa7237" />
       </Interface>
     </modelContainsNamedElements>
@@ -37,14 +31,8 @@
         <ownedAttributesInternal>
           <requiredInterface Id="06716fe3-2f2c-4dc6-807b-c42f4c3b5db1" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
             <elementDefinition Id="4150de37-0aac-4d2a-b9d1-7a27c8a1b000" />
-            <suppliersInternal>
-              <dependency Id="ee38dfe4-a9cc-4190-b3a8-6732a5ef5682">
-                <providedInterfaceMoniker Id="34866a70-9084-4294-8e85-cd65708c0aae" LastKnownName="Port1" />
-                <elementDefinition Id="0fc9c939-0538-4336-b983-3e2e823a71e5" />
-              </dependency>
-            </suppliersInternal>
             <type_NamedElement>
-              <interfaceMoniker Id="d23b5f9b-d3d7-4646-9120-28b8b5b1d634" LastKnownName="AJAX" />
+              <interfaceMoniker Id="d23b5f9b-d3d7-4646-9120-28b8b5b1d634" />
             </type_NamedElement>
           </requiredInterface>
         </ownedAttributesInternal>
@@ -56,26 +44,20 @@
         <ownedAttributesInternal>
           <requiredInterface Id="e2b0f5e6-79e5-488e-b3ad-600f00c19245" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
             <elementDefinition Id="f85ce335-5cc4-4eb7-89fb-ed2962c33d4b" />
-            <suppliersInternal>
-              <dependency Id="270f4795-87b0-419b-bc2b-7ae51e5c02ee">
-                <providedInterfaceMoniker Id="34866a70-9084-4294-8e85-cd65708c0aae" LastKnownName="Port1" />
-                <elementDefinition Id="60c2bb38-f602-4e1d-8c84-f7cdf7f6b47c" />
-              </dependency>
-            </suppliersInternal>
             <type_NamedElement>
-              <interfaceMoniker Id="c6cccfe5-58b7-470d-9118-150a2201c0aa" LastKnownName="AJAX" />
+              <interfaceMoniker Id="c6cccfe5-58b7-470d-9118-150a2201c0aa" />
             </type_NamedElement>
           </requiredInterface>
         </ownedAttributesInternal>
       </component>
     </componentModelHasComponents>
     <modelContainsNamedElements>
-      <Interface Id="d23b5f9b-d3d7-4646-9120-28b8b5b1d634" name="AJAX" isAbstract="false" isLeaf="false">
+      <Interface Id="d23b5f9b-d3d7-4646-9120-28b8b5b1d634" isAbstract="false" isLeaf="false">
         <elementDefinition Id="69feeb5e-fffe-41ef-8e0c-fdcced04b05a" />
       </Interface>
     </modelContainsNamedElements>
     <modelContainsNamedElements>
-      <Interface Id="c6cccfe5-58b7-470d-9118-150a2201c0aa" name="AJAX" isAbstract="false" isLeaf="false">
+      <Interface Id="c6cccfe5-58b7-470d-9118-150a2201c0aa" isAbstract="false" isLeaf="false">
         <elementDefinition Id="099892ee-3238-4974-9e87-95328f5ee5b4" />
       </Interface>
     </modelContainsNamedElements>
@@ -91,12 +73,6 @@
           </providedInterface>
           <requiredInterface Id="6820a764-b054-4be0-930d-313a090524ef" name="Port2" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
             <elementDefinition Id="455248f5-d4cd-416f-b1f9-b002765726cb" />
-            <suppliersInternal>
-              <dependency Id="39db9c7c-872e-44e6-8ad4-9947fceb4025">
-                <providedInterfaceMoniker Id="967ecc08-8caf-463a-b095-030afa65b325" LastKnownName="Port1" />
-                <elementDefinition Id="5b3b5274-b6ff-479a-b158-06b791b12a24" />
-              </dependency>
-            </suppliersInternal>
             <type_NamedElement>
               <interfaceMoniker Id="0c8d46ab-0ceb-436b-9021-c5c95d7d024c" />
             </type_NamedElement>
