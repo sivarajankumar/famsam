@@ -33,3 +33,4 @@ D:\capstone\svn\ServerAPI\ServerAPI\bin\System.Web.Http.WebHost.xml
 D:\capstone\svn\ServerAPI\ServerAPI\obj\Debug\ApplicationInsights.config
 D:\capstone\svn\ServerAPI\ServerAPI\obj\Debug\ServerAPI.dll
 D:\capstone\svn\ServerAPI\ServerAPI\obj\Debug\ServerAPI.pdb
+D:\capstone\svn\ServerAPI\ServerAPI\obj\Debug\ServerAPI.csprojResolveAssemblyReference.cache

@@ -69,6 +69,8 @@
     </Reference>
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -115,18 +117,86 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="DTO\ApiResult.cs" />
-    <Compile Include="Models\Family.cs" />
-    <Compile Include="Models\FamsamDBContext.cs" />
-    <Compile Include="Models\GeneralPost.cs" />
     <Compile Include="DTO\UserDTO.cs" />
-    <Compile Include="Models\Session.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Models\UserActivity.cs" />
+    <Compile Include="Models\Album.cs">
+      <DependentUpon>FamsamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Comment.cs">
+      <DependentUpon>FamsamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Family.cs">
+      <DependentUpon>FamsamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FamilyRole.cs">
+      <DependentUpon>FamsamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FamsamModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FamsamModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FamsamModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FamsamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FamsamModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FamsamModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GeneralPost.cs">
+      <DependentUpon>FamsamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Neighborhood.cs">
+      <DependentUpon>FamsamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NeighborRequest.cs">
+      <DependentUpon>FamsamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Photo.cs">
+      <DependentUpon>FamsamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Report.cs">
+      <DependentUpon>FamsamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sharing.cs">
+      <DependentUpon>FamsamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Story.cs">
+      <DependentUpon>FamsamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tag.cs">
+      <DependentUpon>FamsamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>FamsamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserRole.cs">
+      <DependentUpon>FamsamModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config" />
+    <EntityDeploy Include="Models\FamsamModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FamsamModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\FamsamModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FamsamModel.edmx</DependentUpon>
+      <LastGenOutput>FamsamModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\FamsamModel.edmx.diagram">
+      <DependentUpon>FamsamModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\FamsamModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FamsamModel.edmx</DependentUpon>
+      <LastGenOutput>FamsamModel.cs</LastGenOutput>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -137,6 +207,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="scripts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

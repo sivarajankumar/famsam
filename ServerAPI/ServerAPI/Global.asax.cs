@@ -14,7 +14,7 @@ namespace ServerAPI
     {
         protected void Application_Start()
         {
-            Database.SetInitializer(new DropCreateDatabaseAlways<FamsamDB>());
+            //Database.SetInitializer(new DropCreateDatabaseAlways<FamsamEntities>());
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
 
