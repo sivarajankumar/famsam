@@ -109,9 +109,8 @@
   <ItemGroup>
     <Compile Include="App_Start\MyHttpControllerHandler.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AlbumsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Controllers\PhotosController.cs" />
+    <Compile Include="DAO\PhotoDAO.cs" />
     <Compile Include="DTO\PhotoDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -158,6 +157,9 @@
       <DependentUpon>FamsamModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Report.cs">
+      <DependentUpon>FamsamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Session.cs">
       <DependentUpon>FamsamModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Sharing.cs">

@@ -16,7 +16,7 @@ namespace ServerAPI.Models
     public partial class FamsamEntities : DbContext
     {
         public FamsamEntities()
-            : base("name=FamsamEntities1")
+            : base("name=FamsamEntities")
         {
         }
     
@@ -34,6 +34,7 @@ namespace ServerAPI.Models
         public virtual DbSet<NeighborRequest> NeighborRequest { get; set; }
         public virtual DbSet<Photo> Photo { get; set; }
         public virtual DbSet<Report> Report { get; set; }
+        public virtual DbSet<Session> Session { get; set; }
         public virtual DbSet<Sharing> Sharing { get; set; }
         public virtual DbSet<Story> Story { get; set; }
         public virtual DbSet<Tag> Tag { get; set; }
