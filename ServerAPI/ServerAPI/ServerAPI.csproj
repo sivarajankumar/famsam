@@ -110,7 +110,9 @@
     <Compile Include="App_Start\MyHttpControllerHandler.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="DAO\AlbumDAO.cs" />
     <Compile Include="DAO\PhotoDAO.cs" />
+    <Compile Include="DTO\AlbumDTO.cs" />
     <Compile Include="DTO\PhotoDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
