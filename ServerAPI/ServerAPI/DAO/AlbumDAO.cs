@@ -76,7 +76,7 @@ namespace ServerAPI.DAO
             }
         }
 
-        // current user update an album
+        // current user update album description
         // return -1 if fail
         // return 0 if success
         public int EditAlbumDescription(AlbumDTO albumEdit)
@@ -96,6 +96,45 @@ namespace ServerAPI.DAO
                     Debug.WriteLine("Exception: " + ex.StackTrace);
                     return -1;
                 }
+                return 0;
+            }
+        }
+
+        // current user update album title
+        // return -1 if fail
+        // return 0 if success
+        public int EditAlbumTitle(AlbumDTO albumEdit)
+        {
+            using (var context = new FamsamEntities())
+            {
+                var post = context.GeneralPost.FirstOrDefault(p => p.id == albumEdit.Id);
+                post.lastUpdate = DateTime.Now;
+                var album = context.Album.FirstOrDefault(a => a.id == albumEdit.Id);
+                album.title = albumEdit.Title;
+                try
+                {
+                    context.Entry<Album>(album).State = EntityState.Modified;
+                    context.Entry<GeneralPost>(post).State = EntityState.Modified;
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("Exception: " + ex.StackTrace);
+                    return -1;
+                }
+                return 0;
+            }
+        }
+
+        // current user remove an album
+        // return -1 if fail
+        // return 0 if success
+        public int RemoveAlbum(int albumId)
+        {
+            using (var context = new FamsamEntities())
+            {
+                var post = context.GeneralPost.FirstOrDefault(p => p.id == albumId);
+                var album = context.GeneralPost.FirstOrDefault(a => a.id == albumId);
                 return 0;
             }
         }
