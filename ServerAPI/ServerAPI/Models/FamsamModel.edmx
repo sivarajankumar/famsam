@@ -1,0 +1,1396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="famsamModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Album">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Album_Photo">
+          <Key>
+            <PropertyRef Name="albumId" />
+            <PropertyRef Name="photoId" />
+          </Key>
+          <Property Name="albumId" Type="int" Nullable="false" />
+          <Property Name="photoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="userId" />
+            <PropertyRef Name="postId" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="postId" Type="int" Nullable="false" />
+          <Property Name="date" Type="datetime" />
+          <Property Name="content" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Family">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+          <Property Name="date" Type="datetime" />
+          <Property Name="coverURL" Type="varchar" MaxLength="255" />
+          <Property Name="description" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="FamilyRole">
+          <Key>
+            <PropertyRef Name="userId" />
+            <PropertyRef Name="familyId" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="familyId" Type="int" Nullable="false" />
+          <Property Name="roleName" Type="varchar" MaxLength="20" />
+          <Property Name="dateJoin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Following">
+          <Key>
+            <PropertyRef Name="userId" />
+            <PropertyRef Name="familyId" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="familyId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GeneralPost">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="255" />
+          <Property Name="lastUpdate" Type="datetime" />
+          <Property Name="postType" Type="varchar" MaxLength="10" />
+          <Property Name="author" Type="int" />
+        </EntityType>
+        <EntityType Name="Likes">
+          <Key>
+            <PropertyRef Name="userId" />
+            <PropertyRef Name="postId" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="postId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Neighborhood">
+          <Key>
+            <PropertyRef Name="familyId" />
+            <PropertyRef Name="neighborId" />
+          </Key>
+          <Property Name="familyId" Type="int" Nullable="false" />
+          <Property Name="neighborId" Type="int" Nullable="false" />
+          <Property Name="date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="NeighborRequest">
+          <Key>
+            <PropertyRef Name="userId" />
+            <PropertyRef Name="familyId" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="familyId" Type="int" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Photo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="url" Type="varchar" MaxLength="255" />
+          <Property Name="badQuality" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="userId" />
+            <PropertyRef Name="photoId" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="photoId" Type="int" Nullable="false" />
+          <Property Name="date" Type="datetime" />
+          <Property Name="reason" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Sharing">
+          <Key>
+            <PropertyRef Name="userId" />
+            <PropertyRef Name="storyId" />
+            <PropertyRef Name="sharedFamilyId" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="storyId" Type="int" Nullable="false" />
+          <Property Name="sharedFamilyId" Type="int" Nullable="false" />
+          <Property Name="date" Type="datetime" />
+          <Property Name="message" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Story">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="100" />
+          <Property Name="privacy" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Story_Album">
+          <Key>
+            <PropertyRef Name="storyId" />
+            <PropertyRef Name="albumId" />
+          </Key>
+          <Property Name="storyId" Type="int" Nullable="false" />
+          <Property Name="albumId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tagging">
+          <Key>
+            <PropertyRef Name="postId" />
+            <PropertyRef Name="tagName" />
+          </Key>
+          <Property Name="postId" Type="int" Nullable="false" />
+          <Property Name="tagName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="password" Type="varchar" MaxLength="100" />
+          <Property Name="firstname" Type="varchar" MaxLength="50" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" />
+          <Property Name="about" Type="varchar" MaxLength="255" />
+          <Property Name="workAt" Type="varchar" MaxLength="100" />
+          <Property Name="birthday" Type="datetime" />
+          <Property Name="phone" Type="varchar" MaxLength="20" />
+          <Property Name="infoPrivacy" Type="bit" />
+          <Property Name="address" Type="varchar" MaxLength="255" />
+          <Property Name="country" Type="varchar" MaxLength="20" />
+          <Property Name="avatarURL" Type="varchar" MaxLength="255" />
+          <Property Name="status" Type="varchar" MaxLength="10" />
+          <Property Name="role" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="rolename" />
+          </Key>
+          <Property Name="rolename" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK__Album__id__1CF15040">
+          <End Role="GeneralPost" Type="Self.GeneralPost" Multiplicity="1" />
+          <End Role="Album" Type="Self.Album" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="GeneralPost">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Album">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Album_Pho__album__47DBAE45">
+          <End Role="Album" Type="Self.Album" Multiplicity="1" />
+          <End Role="Album_Photo" Type="Self.Album_Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Album">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Album_Photo">
+              <PropertyRef Name="albumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Album_Pho__photo__48CFD27E">
+          <End Role="Photo" Type="Self.Photo" Multiplicity="1" />
+          <End Role="Album_Photo" Type="Self.Album_Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Photo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Album_Photo">
+              <PropertyRef Name="photoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment__postId__34C8D9D1">
+          <End Role="GeneralPost" Type="Self.GeneralPost" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GeneralPost">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="postId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment__userId__33D4B598">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FamilyRol__famil__30F848ED">
+          <End Role="Family" Type="Self.Family" Multiplicity="1" />
+          <End Role="FamilyRole" Type="Self.FamilyRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Family">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="FamilyRole">
+              <PropertyRef Name="familyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FamilyRol__userI__300424B4">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="FamilyRole" Type="Self.FamilyRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="FamilyRole">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Following__famil__2D27B809">
+          <End Role="Family" Type="Self.Family" Multiplicity="1" />
+          <End Role="Following" Type="Self.Following" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Family">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Following">
+              <PropertyRef Name="familyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Following__userI__2C3393D0">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Following" Type="Self.Following" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Following">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GeneralPo__autho__173876EA">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="GeneralPost" Type="Self.GeneralPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="GeneralPost">
+              <PropertyRef Name="author" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Likes__postId__3D5E1FD2">
+          <End Role="GeneralPost" Type="Self.GeneralPost" Multiplicity="1" />
+          <End Role="Likes" Type="Self.Likes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GeneralPost">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Likes">
+              <PropertyRef Name="postId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Likes__userId__3C69FB99">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Likes" Type="Self.Likes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Likes">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Neighborh__famil__24927208">
+          <End Role="Family" Type="Self.Family" Multiplicity="1" />
+          <End Role="Neighborhood" Type="Self.Neighborhood" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Family">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Neighborhood">
+              <PropertyRef Name="familyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Neighborh__neigh__25869641">
+          <End Role="Family" Type="Self.Family" Multiplicity="1" />
+          <End Role="Neighborhood" Type="Self.Neighborhood" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Family">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Neighborhood">
+              <PropertyRef Name="neighborId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NeighborR__famil__29572725">
+          <End Role="Family" Type="Self.Family" Multiplicity="1" />
+          <End Role="NeighborRequest" Type="Self.NeighborRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Family">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="NeighborRequest">
+              <PropertyRef Name="familyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NeighborR__userI__286302EC">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="NeighborRequest" Type="Self.NeighborRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="NeighborRequest">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Photo__id__1FCDBCEB">
+          <End Role="GeneralPost" Type="Self.GeneralPost" Multiplicity="1" />
+          <End Role="Photo" Type="Self.Photo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="GeneralPost">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Photo">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Report__photoId__4CA06362">
+          <End Role="Photo" Type="Self.Photo" Multiplicity="1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Photo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="photoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Report__userId__4BAC3F29">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sharing__sharedF__398D8EEE">
+          <End Role="Family" Type="Self.Family" Multiplicity="1" />
+          <End Role="Sharing" Type="Self.Sharing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Family">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sharing">
+              <PropertyRef Name="sharedFamilyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sharing__storyId__38996AB5">
+          <End Role="Story" Type="Self.Story" Multiplicity="1" />
+          <End Role="Sharing" Type="Self.Sharing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Story">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sharing">
+              <PropertyRef Name="storyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sharing__userId__37A5467C">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Sharing" Type="Self.Sharing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sharing">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Story__id__1A14E395">
+          <End Role="GeneralPost" Type="Self.GeneralPost" Multiplicity="1" />
+          <End Role="Story" Type="Self.Story" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="GeneralPost">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Story_Alb__album__44FF419A">
+          <End Role="Album" Type="Self.Album" Multiplicity="1" />
+          <End Role="Story_Album" Type="Self.Story_Album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Album">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Story_Album">
+              <PropertyRef Name="albumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Story_Alb__story__440B1D61">
+          <End Role="Story" Type="Self.Story" Multiplicity="1" />
+          <End Role="Story_Album" Type="Self.Story_Album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Story">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Story_Album">
+              <PropertyRef Name="storyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tagging__postId__403A8C7D">
+          <End Role="GeneralPost" Type="Self.GeneralPost" Multiplicity="1" />
+          <End Role="Tagging" Type="Self.Tagging" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GeneralPost">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Tagging">
+              <PropertyRef Name="postId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tagging__tagName__412EB0B6">
+          <End Role="Tag" Type="Self.Tag" Multiplicity="1" />
+          <End Role="Tagging" Type="Self.Tagging" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Tagging">
+              <PropertyRef Name="tagName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__role__145C0A3F">
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="rolename" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="famsamModelStoreContainer">
+          <EntitySet Name="Album" EntityType="Self.Album" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Album_Photo" EntityType="Self.Album_Photo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Family" EntityType="Self.Family" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FamilyRole" EntityType="Self.FamilyRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Following" EntityType="Self.Following" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GeneralPost" EntityType="Self.GeneralPost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Likes" EntityType="Self.Likes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Neighborhood" EntityType="Self.Neighborhood" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NeighborRequest" EntityType="Self.NeighborRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Photo" EntityType="Self.Photo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sharing" EntityType="Self.Sharing" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Story" EntityType="Self.Story" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Story_Album" EntityType="Self.Story_Album" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tag" EntityType="Self.Tag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tagging" EntityType="Self.Tagging" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Album__id__1CF15040" Association="Self.FK__Album__id__1CF15040">
+            <End Role="GeneralPost" EntitySet="GeneralPost" />
+            <End Role="Album" EntitySet="Album" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Album_Pho__album__47DBAE45" Association="Self.FK__Album_Pho__album__47DBAE45">
+            <End Role="Album" EntitySet="Album" />
+            <End Role="Album_Photo" EntitySet="Album_Photo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Album_Pho__photo__48CFD27E" Association="Self.FK__Album_Pho__photo__48CFD27E">
+            <End Role="Photo" EntitySet="Photo" />
+            <End Role="Album_Photo" EntitySet="Album_Photo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment__postId__34C8D9D1" Association="Self.FK__Comment__postId__34C8D9D1">
+            <End Role="GeneralPost" EntitySet="GeneralPost" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment__userId__33D4B598" Association="Self.FK__Comment__userId__33D4B598">
+            <End Role="User" EntitySet="User" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FamilyRol__famil__30F848ED" Association="Self.FK__FamilyRol__famil__30F848ED">
+            <End Role="Family" EntitySet="Family" />
+            <End Role="FamilyRole" EntitySet="FamilyRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FamilyRol__userI__300424B4" Association="Self.FK__FamilyRol__userI__300424B4">
+            <End Role="User" EntitySet="User" />
+            <End Role="FamilyRole" EntitySet="FamilyRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Following__famil__2D27B809" Association="Self.FK__Following__famil__2D27B809">
+            <End Role="Family" EntitySet="Family" />
+            <End Role="Following" EntitySet="Following" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Following__userI__2C3393D0" Association="Self.FK__Following__userI__2C3393D0">
+            <End Role="User" EntitySet="User" />
+            <End Role="Following" EntitySet="Following" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GeneralPo__autho__173876EA" Association="Self.FK__GeneralPo__autho__173876EA">
+            <End Role="User" EntitySet="User" />
+            <End Role="GeneralPost" EntitySet="GeneralPost" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Likes__postId__3D5E1FD2" Association="Self.FK__Likes__postId__3D5E1FD2">
+            <End Role="GeneralPost" EntitySet="GeneralPost" />
+            <End Role="Likes" EntitySet="Likes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Likes__userId__3C69FB99" Association="Self.FK__Likes__userId__3C69FB99">
+            <End Role="User" EntitySet="User" />
+            <End Role="Likes" EntitySet="Likes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Neighborh__famil__24927208" Association="Self.FK__Neighborh__famil__24927208">
+            <End Role="Family" EntitySet="Family" />
+            <End Role="Neighborhood" EntitySet="Neighborhood" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Neighborh__neigh__25869641" Association="Self.FK__Neighborh__neigh__25869641">
+            <End Role="Family" EntitySet="Family" />
+            <End Role="Neighborhood" EntitySet="Neighborhood" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NeighborR__famil__29572725" Association="Self.FK__NeighborR__famil__29572725">
+            <End Role="Family" EntitySet="Family" />
+            <End Role="NeighborRequest" EntitySet="NeighborRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NeighborR__userI__286302EC" Association="Self.FK__NeighborR__userI__286302EC">
+            <End Role="User" EntitySet="User" />
+            <End Role="NeighborRequest" EntitySet="NeighborRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Photo__id__1FCDBCEB" Association="Self.FK__Photo__id__1FCDBCEB">
+            <End Role="GeneralPost" EntitySet="GeneralPost" />
+            <End Role="Photo" EntitySet="Photo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Report__photoId__4CA06362" Association="Self.FK__Report__photoId__4CA06362">
+            <End Role="Photo" EntitySet="Photo" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Report__userId__4BAC3F29" Association="Self.FK__Report__userId__4BAC3F29">
+            <End Role="User" EntitySet="User" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sharing__sharedF__398D8EEE" Association="Self.FK__Sharing__sharedF__398D8EEE">
+            <End Role="Family" EntitySet="Family" />
+            <End Role="Sharing" EntitySet="Sharing" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sharing__storyId__38996AB5" Association="Self.FK__Sharing__storyId__38996AB5">
+            <End Role="Story" EntitySet="Story" />
+            <End Role="Sharing" EntitySet="Sharing" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sharing__userId__37A5467C" Association="Self.FK__Sharing__userId__37A5467C">
+            <End Role="User" EntitySet="User" />
+            <End Role="Sharing" EntitySet="Sharing" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Story__id__1A14E395" Association="Self.FK__Story__id__1A14E395">
+            <End Role="GeneralPost" EntitySet="GeneralPost" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Story_Alb__album__44FF419A" Association="Self.FK__Story_Alb__album__44FF419A">
+            <End Role="Album" EntitySet="Album" />
+            <End Role="Story_Album" EntitySet="Story_Album" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Story_Alb__story__440B1D61" Association="Self.FK__Story_Alb__story__440B1D61">
+            <End Role="Story" EntitySet="Story" />
+            <End Role="Story_Album" EntitySet="Story_Album" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tagging__postId__403A8C7D" Association="Self.FK__Tagging__postId__403A8C7D">
+            <End Role="GeneralPost" EntitySet="GeneralPost" />
+            <End Role="Tagging" EntitySet="Tagging" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tagging__tagName__412EB0B6" Association="Self.FK__Tagging__tagName__412EB0B6">
+            <End Role="Tag" EntitySet="Tag" />
+            <End Role="Tagging" EntitySet="Tagging" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__role__145C0A3F" Association="Self.FK__User__role__145C0A3F">
+            <End Role="UserRole" EntitySet="UserRole" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="famsamModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Album">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GeneralPost" Relationship="Self.FK__Album__id__1CF15040" FromRole="Album" ToRole="GeneralPost" />
+          <NavigationProperty Name="Photo" Relationship="Self.Album_Photo" FromRole="Album" ToRole="Photo" />
+          <NavigationProperty Name="Story" Relationship="Self.Story_Album" FromRole="Album" ToRole="Story" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="userId" />
+            <PropertyRef Name="postId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="postId" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="content" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GeneralPost" Relationship="Self.FK__Comment__postId__34C8D9D1" FromRole="Comment" ToRole="GeneralPost" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Comment__userId__33D4B598" FromRole="Comment" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Family">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="coverURL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FamilyRole" Relationship="Self.FK__FamilyRol__famil__30F848ED" FromRole="Family" ToRole="FamilyRole" />
+          <NavigationProperty Name="Neighborhood" Relationship="Self.FK__Neighborh__famil__24927208" FromRole="Family" ToRole="Neighborhood" />
+          <NavigationProperty Name="Neighborhood1" Relationship="Self.FK__Neighborh__neigh__25869641" FromRole="Family" ToRole="Neighborhood" />
+          <NavigationProperty Name="NeighborRequest" Relationship="Self.FK__NeighborR__famil__29572725" FromRole="Family" ToRole="NeighborRequest" />
+          <NavigationProperty Name="Sharing" Relationship="Self.FK__Sharing__sharedF__398D8EEE" FromRole="Family" ToRole="Sharing" />
+          <NavigationProperty Name="User" Relationship="Self.Following" FromRole="Family" ToRole="User" />
+        </EntityType>
+        <EntityType Name="FamilyRole">
+          <Key>
+            <PropertyRef Name="userId" />
+            <PropertyRef Name="familyId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="familyId" Type="Int32" Nullable="false" />
+          <Property Name="roleName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="dateJoin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Family" Relationship="Self.FK__FamilyRol__famil__30F848ED" FromRole="FamilyRole" ToRole="Family" />
+          <NavigationProperty Name="User" Relationship="Self.FK__FamilyRol__userI__300424B4" FromRole="FamilyRole" ToRole="User" />
+        </EntityType>
+        <EntityType Name="GeneralPost">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="lastUpdate" Type="DateTime" Precision="3" />
+          <Property Name="postType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="author" Type="Int32" />
+          <NavigationProperty Name="Album" Relationship="Self.FK__Album__id__1CF15040" FromRole="GeneralPost" ToRole="Album" />
+          <NavigationProperty Name="Comment" Relationship="Self.FK__Comment__postId__34C8D9D1" FromRole="GeneralPost" ToRole="Comment" />
+          <NavigationProperty Name="User" Relationship="Self.FK__GeneralPo__autho__173876EA" FromRole="GeneralPost" ToRole="User" />
+          <NavigationProperty Name="Photo" Relationship="Self.FK__Photo__id__1FCDBCEB" FromRole="GeneralPost" ToRole="Photo" />
+          <NavigationProperty Name="Story" Relationship="Self.FK__Story__id__1A14E395" FromRole="GeneralPost" ToRole="Story" />
+          <NavigationProperty Name="User1" Relationship="Self.Likes" FromRole="GeneralPost" ToRole="User" />
+          <NavigationProperty Name="Tag" Relationship="Self.Tagging" FromRole="GeneralPost" ToRole="Tag" />
+        </EntityType>
+        <EntityType Name="Neighborhood">
+          <Key>
+            <PropertyRef Name="familyId" />
+            <PropertyRef Name="neighborId" />
+          </Key>
+          <Property Name="familyId" Type="Int32" Nullable="false" />
+          <Property Name="neighborId" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Family" Relationship="Self.FK__Neighborh__famil__24927208" FromRole="Neighborhood" ToRole="Family" />
+          <NavigationProperty Name="Family1" Relationship="Self.FK__Neighborh__neigh__25869641" FromRole="Neighborhood" ToRole="Family" />
+        </EntityType>
+        <EntityType Name="NeighborRequest">
+          <Key>
+            <PropertyRef Name="userId" />
+            <PropertyRef Name="familyId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="familyId" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Family" Relationship="Self.FK__NeighborR__famil__29572725" FromRole="NeighborRequest" ToRole="Family" />
+          <NavigationProperty Name="User" Relationship="Self.FK__NeighborR__userI__286302EC" FromRole="NeighborRequest" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Photo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="url" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="badQuality" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GeneralPost" Relationship="Self.FK__Photo__id__1FCDBCEB" FromRole="Photo" ToRole="GeneralPost" />
+          <NavigationProperty Name="Report" Relationship="Self.FK__Report__photoId__4CA06362" FromRole="Photo" ToRole="Report" />
+          <NavigationProperty Name="Album" Relationship="Self.Album_Photo" FromRole="Photo" ToRole="Album" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="userId" />
+            <PropertyRef Name="photoId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="photoId" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="reason" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Photo" Relationship="Self.FK__Report__photoId__4CA06362" FromRole="Report" ToRole="Photo" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Report__userId__4BAC3F29" FromRole="Report" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Sharing">
+          <Key>
+            <PropertyRef Name="userId" />
+            <PropertyRef Name="storyId" />
+            <PropertyRef Name="sharedFamilyId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="storyId" Type="Int32" Nullable="false" />
+          <Property Name="sharedFamilyId" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="message" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Family" Relationship="Self.FK__Sharing__sharedF__398D8EEE" FromRole="Sharing" ToRole="Family" />
+          <NavigationProperty Name="Story" Relationship="Self.FK__Sharing__storyId__38996AB5" FromRole="Sharing" ToRole="Story" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Sharing__userId__37A5467C" FromRole="Sharing" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Story">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="privacy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GeneralPost" Relationship="Self.FK__Story__id__1A14E395" FromRole="Story" ToRole="GeneralPost" />
+          <NavigationProperty Name="Sharing" Relationship="Self.FK__Sharing__storyId__38996AB5" FromRole="Story" ToRole="Sharing" />
+          <NavigationProperty Name="Album" Relationship="Self.Story_Album" FromRole="Story" ToRole="Album" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="GeneralPost" Relationship="Self.Tagging" FromRole="Tag" ToRole="GeneralPost" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="about" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="workAt" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="birthday" Type="DateTime" Precision="3" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="infoPrivacy" Type="Boolean" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="country" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="avatarURL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="role" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Comment" Relationship="Self.FK__Comment__userId__33D4B598" FromRole="User" ToRole="Comment" />
+          <NavigationProperty Name="FamilyRole" Relationship="Self.FK__FamilyRol__userI__300424B4" FromRole="User" ToRole="FamilyRole" />
+          <NavigationProperty Name="GeneralPost" Relationship="Self.FK__GeneralPo__autho__173876EA" FromRole="User" ToRole="GeneralPost" />
+          <NavigationProperty Name="NeighborRequest" Relationship="Self.FK__NeighborR__userI__286302EC" FromRole="User" ToRole="NeighborRequest" />
+          <NavigationProperty Name="Report" Relationship="Self.FK__Report__userId__4BAC3F29" FromRole="User" ToRole="Report" />
+          <NavigationProperty Name="Sharing" Relationship="Self.FK__Sharing__userId__37A5467C" FromRole="User" ToRole="Sharing" />
+          <NavigationProperty Name="UserRole" Relationship="Self.FK__User__role__145C0A3F" FromRole="User" ToRole="UserRole" />
+          <NavigationProperty Name="Family" Relationship="Self.Following" FromRole="User" ToRole="Family" />
+          <NavigationProperty Name="GeneralPost1" Relationship="Self.Likes" FromRole="User" ToRole="GeneralPost" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="rolename" />
+          </Key>
+          <Property Name="rolename" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK__User__role__145C0A3F" FromRole="UserRole" ToRole="User" />
+        </EntityType>
+        <Association Name="FK__Album__id__1CF15040">
+          <End Role="GeneralPost" Type="Self.GeneralPost" Multiplicity="1" />
+          <End Role="Album" Type="Self.Album" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="GeneralPost">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Album">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment__postId__34C8D9D1">
+          <End Role="GeneralPost" Type="Self.GeneralPost" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GeneralPost">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="postId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment__userId__33D4B598">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FamilyRol__famil__30F848ED">
+          <End Role="Family" Type="Self.Family" Multiplicity="1" />
+          <End Role="FamilyRole" Type="Self.FamilyRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Family">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="FamilyRole">
+              <PropertyRef Name="familyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Neighborh__famil__24927208">
+          <End Role="Family" Type="Self.Family" Multiplicity="1" />
+          <End Role="Neighborhood" Type="Self.Neighborhood" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Family">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Neighborhood">
+              <PropertyRef Name="familyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Neighborh__neigh__25869641">
+          <End Role="Family" Type="Self.Family" Multiplicity="1" />
+          <End Role="Neighborhood" Type="Self.Neighborhood" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Family">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Neighborhood">
+              <PropertyRef Name="neighborId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NeighborR__famil__29572725">
+          <End Role="Family" Type="Self.Family" Multiplicity="1" />
+          <End Role="NeighborRequest" Type="Self.NeighborRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Family">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="NeighborRequest">
+              <PropertyRef Name="familyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sharing__sharedF__398D8EEE">
+          <End Role="Family" Type="Self.Family" Multiplicity="1" />
+          <End Role="Sharing" Type="Self.Sharing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Family">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sharing">
+              <PropertyRef Name="sharedFamilyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FamilyRol__userI__300424B4">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="FamilyRole" Type="Self.FamilyRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="FamilyRole">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GeneralPo__autho__173876EA">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="GeneralPost" Type="Self.GeneralPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="GeneralPost">
+              <PropertyRef Name="author" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Photo__id__1FCDBCEB">
+          <End Role="GeneralPost" Type="Self.GeneralPost" Multiplicity="1" />
+          <End Role="Photo" Type="Self.Photo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="GeneralPost">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Photo">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Story__id__1A14E395">
+          <End Role="GeneralPost" Type="Self.GeneralPost" Multiplicity="1" />
+          <End Role="Story" Type="Self.Story" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="GeneralPost">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NeighborR__userI__286302EC">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="NeighborRequest" Type="Self.NeighborRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="NeighborRequest">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Report__photoId__4CA06362">
+          <End Role="Photo" Type="Self.Photo" Multiplicity="1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Photo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="photoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Report__userId__4BAC3F29">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sharing__storyId__38996AB5">
+          <End Role="Story" Type="Self.Story" Multiplicity="1" />
+          <End Role="Sharing" Type="Self.Sharing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Story">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sharing">
+              <PropertyRef Name="storyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sharing__userId__37A5467C">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Sharing" Type="Self.Sharing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sharing">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__role__145C0A3F">
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="rolename" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Album_Photo">
+          <End Role="Album" Type="Self.Album" Multiplicity="*" />
+          <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
+        </Association>
+        <Association Name="Following">
+          <End Role="Family" Type="Self.Family" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+        </Association>
+        <Association Name="Likes">
+          <End Role="GeneralPost" Type="Self.GeneralPost" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+        </Association>
+        <Association Name="Story_Album">
+          <End Role="Album" Type="Self.Album" Multiplicity="*" />
+          <End Role="Story" Type="Self.Story" Multiplicity="*" />
+        </Association>
+        <Association Name="Tagging">
+          <End Role="GeneralPost" Type="Self.GeneralPost" Multiplicity="*" />
+          <End Role="Tag" Type="Self.Tag" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="FamsamEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Album" EntityType="Self.Album" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" />
+          <EntitySet Name="Family" EntityType="Self.Family" />
+          <EntitySet Name="FamilyRole" EntityType="Self.FamilyRole" />
+          <EntitySet Name="GeneralPost" EntityType="Self.GeneralPost" />
+          <EntitySet Name="Neighborhood" EntityType="Self.Neighborhood" />
+          <EntitySet Name="NeighborRequest" EntityType="Self.NeighborRequest" />
+          <EntitySet Name="Photo" EntityType="Self.Photo" />
+          <EntitySet Name="Report" EntityType="Self.Report" />
+          <EntitySet Name="Sharing" EntityType="Self.Sharing" />
+          <EntitySet Name="Story" EntityType="Self.Story" />
+          <EntitySet Name="Tag" EntityType="Self.Tag" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" />
+          <AssociationSet Name="FK__Album__id__1CF15040" Association="Self.FK__Album__id__1CF15040">
+            <End Role="GeneralPost" EntitySet="GeneralPost" />
+            <End Role="Album" EntitySet="Album" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment__postId__34C8D9D1" Association="Self.FK__Comment__postId__34C8D9D1">
+            <End Role="GeneralPost" EntitySet="GeneralPost" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment__userId__33D4B598" Association="Self.FK__Comment__userId__33D4B598">
+            <End Role="User" EntitySet="User" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FamilyRol__famil__30F848ED" Association="Self.FK__FamilyRol__famil__30F848ED">
+            <End Role="Family" EntitySet="Family" />
+            <End Role="FamilyRole" EntitySet="FamilyRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Neighborh__famil__24927208" Association="Self.FK__Neighborh__famil__24927208">
+            <End Role="Family" EntitySet="Family" />
+            <End Role="Neighborhood" EntitySet="Neighborhood" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Neighborh__neigh__25869641" Association="Self.FK__Neighborh__neigh__25869641">
+            <End Role="Family" EntitySet="Family" />
+            <End Role="Neighborhood" EntitySet="Neighborhood" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NeighborR__famil__29572725" Association="Self.FK__NeighborR__famil__29572725">
+            <End Role="Family" EntitySet="Family" />
+            <End Role="NeighborRequest" EntitySet="NeighborRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sharing__sharedF__398D8EEE" Association="Self.FK__Sharing__sharedF__398D8EEE">
+            <End Role="Family" EntitySet="Family" />
+            <End Role="Sharing" EntitySet="Sharing" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FamilyRol__userI__300424B4" Association="Self.FK__FamilyRol__userI__300424B4">
+            <End Role="User" EntitySet="User" />
+            <End Role="FamilyRole" EntitySet="FamilyRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GeneralPo__autho__173876EA" Association="Self.FK__GeneralPo__autho__173876EA">
+            <End Role="User" EntitySet="User" />
+            <End Role="GeneralPost" EntitySet="GeneralPost" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Photo__id__1FCDBCEB" Association="Self.FK__Photo__id__1FCDBCEB">
+            <End Role="GeneralPost" EntitySet="GeneralPost" />
+            <End Role="Photo" EntitySet="Photo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Story__id__1A14E395" Association="Self.FK__Story__id__1A14E395">
+            <End Role="GeneralPost" EntitySet="GeneralPost" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NeighborR__userI__286302EC" Association="Self.FK__NeighborR__userI__286302EC">
+            <End Role="User" EntitySet="User" />
+            <End Role="NeighborRequest" EntitySet="NeighborRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Report__photoId__4CA06362" Association="Self.FK__Report__photoId__4CA06362">
+            <End Role="Photo" EntitySet="Photo" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Report__userId__4BAC3F29" Association="Self.FK__Report__userId__4BAC3F29">
+            <End Role="User" EntitySet="User" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sharing__storyId__38996AB5" Association="Self.FK__Sharing__storyId__38996AB5">
+            <End Role="Story" EntitySet="Story" />
+            <End Role="Sharing" EntitySet="Sharing" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sharing__userId__37A5467C" Association="Self.FK__Sharing__userId__37A5467C">
+            <End Role="User" EntitySet="User" />
+            <End Role="Sharing" EntitySet="Sharing" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__role__145C0A3F" Association="Self.FK__User__role__145C0A3F">
+            <End Role="UserRole" EntitySet="UserRole" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="Album_Photo" Association="Self.Album_Photo">
+            <End Role="Album" EntitySet="Album" />
+            <End Role="Photo" EntitySet="Photo" />
+          </AssociationSet>
+          <AssociationSet Name="Following" Association="Self.Following">
+            <End Role="Family" EntitySet="Family" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="Likes" Association="Self.Likes">
+            <End Role="GeneralPost" EntitySet="GeneralPost" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="Story_Album" Association="Self.Story_Album">
+            <End Role="Album" EntitySet="Album" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="Tagging" Association="Self.Tagging">
+            <End Role="GeneralPost" EntitySet="GeneralPost" />
+            <End Role="Tag" EntitySet="Tag" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="famsamModelStoreContainer" CdmEntityContainer="FamsamEntities1">
+          <EntitySetMapping Name="Album">
+            <EntityTypeMapping TypeName="famsamModel.Album">
+              <MappingFragment StoreEntitySet="Album">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comment">
+            <EntityTypeMapping TypeName="famsamModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="postId" ColumnName="postId" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="content" ColumnName="content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Family">
+            <EntityTypeMapping TypeName="famsamModel.Family">
+              <MappingFragment StoreEntitySet="Family">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="coverURL" ColumnName="coverURL" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FamilyRole">
+            <EntityTypeMapping TypeName="famsamModel.FamilyRole">
+              <MappingFragment StoreEntitySet="FamilyRole">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="familyId" ColumnName="familyId" />
+                <ScalarProperty Name="roleName" ColumnName="roleName" />
+                <ScalarProperty Name="dateJoin" ColumnName="dateJoin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GeneralPost">
+            <EntityTypeMapping TypeName="famsamModel.GeneralPost">
+              <MappingFragment StoreEntitySet="GeneralPost">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="lastUpdate" ColumnName="lastUpdate" />
+                <ScalarProperty Name="postType" ColumnName="postType" />
+                <ScalarProperty Name="author" ColumnName="author" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Neighborhood">
+            <EntityTypeMapping TypeName="famsamModel.Neighborhood">
+              <MappingFragment StoreEntitySet="Neighborhood">
+                <ScalarProperty Name="familyId" ColumnName="familyId" />
+                <ScalarProperty Name="neighborId" ColumnName="neighborId" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NeighborRequest">
+            <EntityTypeMapping TypeName="famsamModel.NeighborRequest">
+              <MappingFragment StoreEntitySet="NeighborRequest">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="familyId" ColumnName="familyId" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Photo">
+            <EntityTypeMapping TypeName="famsamModel.Photo">
+              <MappingFragment StoreEntitySet="Photo">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="badQuality" ColumnName="badQuality" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Report">
+            <EntityTypeMapping TypeName="famsamModel.Report">
+              <MappingFragment StoreEntitySet="Report">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="photoId" ColumnName="photoId" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="reason" ColumnName="reason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sharing">
+            <EntityTypeMapping TypeName="famsamModel.Sharing">
+              <MappingFragment StoreEntitySet="Sharing">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="storyId" ColumnName="storyId" />
+                <ScalarProperty Name="sharedFamilyId" ColumnName="sharedFamilyId" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="message" ColumnName="message" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Story">
+            <EntityTypeMapping TypeName="famsamModel.Story">
+              <MappingFragment StoreEntitySet="Story">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="privacy" ColumnName="privacy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tag">
+            <EntityTypeMapping TypeName="famsamModel.Tag">
+              <MappingFragment StoreEntitySet="Tag">
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="famsamModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="about" ColumnName="about" />
+                <ScalarProperty Name="workAt" ColumnName="workAt" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="infoPrivacy" ColumnName="infoPrivacy" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="avatarURL" ColumnName="avatarURL" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRole">
+            <EntityTypeMapping TypeName="famsamModel.UserRole">
+              <MappingFragment StoreEntitySet="UserRole">
+                <ScalarProperty Name="rolename" ColumnName="rolename" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Album_Photo" TypeName="famsamModel.Album_Photo" StoreEntitySet="Album_Photo">
+            <EndProperty Name="Album">
+              <ScalarProperty Name="id" ColumnName="albumId" />
+            </EndProperty>
+            <EndProperty Name="Photo">
+              <ScalarProperty Name="id" ColumnName="photoId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Following" TypeName="famsamModel.Following" StoreEntitySet="Following">
+            <EndProperty Name="Family">
+              <ScalarProperty Name="id" ColumnName="familyId" />
+            </EndProperty>
+            <EndProperty Name="User">
+              <ScalarProperty Name="id" ColumnName="userId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Likes" TypeName="famsamModel.Likes" StoreEntitySet="Likes">
+            <EndProperty Name="GeneralPost">
+              <ScalarProperty Name="id" ColumnName="postId" />
+            </EndProperty>
+            <EndProperty Name="User">
+              <ScalarProperty Name="id" ColumnName="userId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Story_Album" TypeName="famsamModel.Story_Album" StoreEntitySet="Story_Album">
+            <EndProperty Name="Album">
+              <ScalarProperty Name="id" ColumnName="albumId" />
+            </EndProperty>
+            <EndProperty Name="Story">
+              <ScalarProperty Name="id" ColumnName="storyId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Tagging" TypeName="famsamModel.Tagging" StoreEntitySet="Tagging">
+            <EndProperty Name="GeneralPost">
+              <ScalarProperty Name="id" ColumnName="postId" />
+            </EndProperty>
+            <EndProperty Name="Tag">
+              <ScalarProperty Name="name" ColumnName="tagName" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
