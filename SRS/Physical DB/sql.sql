@@ -100,7 +100,7 @@ create table Comment(
 
 create table Sharing(
 	userId int references [User](id),
-	storyId int references Story(id),
+	generalPostId int references GeneralPost(id),
 	sharedFamilyId int references Family(id),
 	[date] datetime,
 	message varchar(255),
@@ -137,4 +137,10 @@ create table Report(
 	[date] datetime,
 	reason varchar(255),
 	Primary key (userId, photoId)
+)
+
+create table [Session](
+	token varchar(100) primary key,
+	expired datetime,
+	userId int references [User]([id])
 )
