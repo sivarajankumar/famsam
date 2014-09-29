@@ -1,4 +1,4 @@
-﻿using famsam.serverapi.Models;
+﻿
 using ServerAPI.Models;
 using ServerAPI.DTO;
 using System;
@@ -12,7 +12,7 @@ namespace ServerAPI.Controllers
 {
     public class UserController : ApiController
     {
-        private FamsamDB db = new FamsamDB();
+        private FamsamEntities db = new FamsamEntities();
         [HttpPost]
         [ActionName("login")]
         public IHttpActionResult Login([FromBody] UserLoginDTO userLogin)
@@ -20,7 +20,7 @@ namespace ServerAPI.Controllers
             ApiResult result;
 
             IQueryable<User> query = from a in db.User
-                                     where (a.Email == userLogin.Email && a.Password == userLogin.Password)
+                                     where (a.email == userLogin.Email && a.password == userLogin.Password)
                                             select a;
             User user = query.FirstOrDefault<User>();
             if (user == null)
@@ -33,14 +33,14 @@ namespace ServerAPI.Controllers
                 Session session = new Session();
                 session.User = user;
                 DateTime now = DateTime.Now;
-                session.Token = now.Millisecond + "";
-                session.ExpiredDate = now.AddHours(2);
+                session.token = now.Millisecond + "";
+                session.expired = now.AddHours(2);
                 db.Session.Add(session);
                 db.SaveChanges();
 
                 LoginResultContentDTO loginDTO = new LoginResultContentDTO();
                 loginDTO.Message = "login success";
-                loginDTO.Token = session.Token;
+                loginDTO.Token = session.token;
 
                 result = UserApiResult.LoginSuccess;
                 result.Content = loginDTO;
@@ -56,7 +56,7 @@ namespace ServerAPI.Controllers
         {
             //check exist email
             IQueryable<User> query = from u in db.User 
-                                     where (u.Email == user.Email)
+                                     where (u.email == user.email)
                                      select u;
             User existUser = query.FirstOrDefault<User>();
             if (existUser == null)

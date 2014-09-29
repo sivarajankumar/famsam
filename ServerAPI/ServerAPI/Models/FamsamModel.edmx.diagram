@@ -4,21 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="41070c308cef4127ba1ab4b97446b915" Name="Diagram1">
-        <EntityTypeShape EntityType="famsamModel.Album" Width="1.5" PointX="10.5" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="famsamModel.Comment" Width="1.5" PointX="10.5" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="famsamModel.Family" Width="1.5" PointX="0.75" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="famsamModel.FamilyRole" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="famsamModel.GeneralPost" Width="1.5" PointX="8.25" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="famsamModel.Neighborhood" Width="1.5" PointX="3" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="famsamModel.NeighborRequest" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="famsamModel.Photo" Width="1.5" PointX="12.75" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="famsamModel.Report" Width="1.5" PointX="15" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="famsamModel.Sharing" Width="1.5" PointX="6" PointY="11.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="famsamModel.Story" Width="1.5" PointX="12.75" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="famsamModel.Tag" Width="1.5" PointX="10.5" PointY="11.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="famsamModel.User" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="famsamModel.UserRole" Width="1.5" PointX="3.75" PointY="6" IsExpanded="true" />
+      <Diagram DiagramId="9ef5f66bdc584bb8802f7d8d7a25bf3a" Name="Diagram1">
+        <EntityTypeShape EntityType="famsamModel.Album" Width="1.5" PointX="10.5" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="famsamModel.Comment" Width="1.5" PointX="10.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="famsamModel.Family" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="famsamModel.FamilyRole" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="famsamModel.GeneralPost" Width="1.5" PointX="8.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="famsamModel.Neighborhood" Width="1.5" PointX="3" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="famsamModel.NeighborRequest" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="famsamModel.Photo" Width="1.5" PointX="12.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="famsamModel.Report" Width="1.5" PointX="15" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="famsamModel.Session" Width="1.5" PointX="8.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="famsamModel.Sharing" Width="1.5" PointX="6" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="famsamModel.Story" Width="1.5" PointX="12.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="famsamModel.Tag" Width="1.5" PointX="10.5" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="famsamModel.User" Width="1.5" PointX="6" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="famsamModel.UserRole" Width="1.5" PointX="3.75" PointY="7.5" IsExpanded="true" />
         <AssociationConnector Association="famsamModel.FK__Album__id__1CF15040" ManuallyRouted="false" />
         <AssociationConnector Association="famsamModel.FK__Comment__postId__34C8D9D1" ManuallyRouted="false" />
         <AssociationConnector Association="famsamModel.FK__Comment__userId__33D4B598" ManuallyRouted="false" />
@@ -34,6 +35,7 @@
         <AssociationConnector Association="famsamModel.FK__NeighborR__userI__286302EC" ManuallyRouted="false" />
         <AssociationConnector Association="famsamModel.FK__Report__photoId__4CA06362" ManuallyRouted="false" />
         <AssociationConnector Association="famsamModel.FK__Report__userId__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="famsamModel.FK__Session__userId__4F7CD00D" ManuallyRouted="false" />
         <AssociationConnector Association="famsamModel.FK__Sharing__storyId__38996AB5" ManuallyRouted="false" />
         <AssociationConnector Association="famsamModel.FK__Sharing__userId__37A5467C" ManuallyRouted="false" />
         <AssociationConnector Association="famsamModel.FK__User__role__145C0A3F" ManuallyRouted="false" />

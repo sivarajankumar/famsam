@@ -112,6 +112,14 @@
           <Property Name="date" Type="datetime" />
           <Property Name="reason" Type="varchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="Session">
+          <Key>
+            <PropertyRef Name="token" />
+          </Key>
+          <Property Name="token" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="expired" Type="datetime" />
+          <Property Name="userId" Type="int" />
+        </EntityType>
         <EntityType Name="Sharing">
           <Key>
             <PropertyRef Name="userId" />
@@ -409,6 +417,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Session__userId__4F7CD00D">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Session" Type="Self.Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Session">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Sharing__sharedF__398D8EEE">
           <End Role="Family" Type="Self.Family" Multiplicity="1" />
           <End Role="Sharing" Type="Self.Sharing" Multiplicity="*" />
@@ -530,6 +550,7 @@
           <EntitySet Name="NeighborRequest" EntityType="Self.NeighborRequest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Photo" EntityType="Self.Photo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Session" EntityType="Self.Session" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sharing" EntityType="Self.Sharing" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Story" EntityType="Self.Story" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Story_Album" EntityType="Self.Story_Album" Schema="dbo" store:Type="Tables" />
@@ -612,6 +633,10 @@
           <AssociationSet Name="FK__Report__userId__4BAC3F29" Association="Self.FK__Report__userId__4BAC3F29">
             <End Role="User" EntitySet="User" />
             <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Session__userId__4F7CD00D" Association="Self.FK__Session__userId__4F7CD00D">
+            <End Role="User" EntitySet="User" />
+            <End Role="Session" EntitySet="Session" />
           </AssociationSet>
           <AssociationSet Name="FK__Sharing__sharedF__398D8EEE" Association="Self.FK__Sharing__sharedF__398D8EEE">
             <End Role="Family" EntitySet="Family" />
@@ -767,6 +792,15 @@
           <NavigationProperty Name="Photo" Relationship="Self.FK__Report__photoId__4CA06362" FromRole="Report" ToRole="Photo" />
           <NavigationProperty Name="User" Relationship="Self.FK__Report__userId__4BAC3F29" FromRole="Report" ToRole="User" />
         </EntityType>
+        <EntityType Name="Session">
+          <Key>
+            <PropertyRef Name="token" />
+          </Key>
+          <Property Name="token" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="expired" Type="DateTime" Precision="3" />
+          <Property Name="userId" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Session__userId__4F7CD00D" FromRole="Session" ToRole="User" />
+        </EntityType>
         <EntityType Name="Sharing">
           <Key>
             <PropertyRef Name="userId" />
@@ -824,6 +858,7 @@
           <NavigationProperty Name="GeneralPost" Relationship="Self.FK__GeneralPo__autho__173876EA" FromRole="User" ToRole="GeneralPost" />
           <NavigationProperty Name="NeighborRequest" Relationship="Self.FK__NeighborR__userI__286302EC" FromRole="User" ToRole="NeighborRequest" />
           <NavigationProperty Name="Report" Relationship="Self.FK__Report__userId__4BAC3F29" FromRole="User" ToRole="Report" />
+          <NavigationProperty Name="Session" Relationship="Self.FK__Session__userId__4F7CD00D" FromRole="User" ToRole="Session" />
           <NavigationProperty Name="Sharing" Relationship="Self.FK__Sharing__userId__37A5467C" FromRole="User" ToRole="Sharing" />
           <NavigationProperty Name="UserRole" Relationship="Self.FK__User__role__145C0A3F" FromRole="User" ToRole="UserRole" />
           <NavigationProperty Name="Family" Relationship="Self.Following" FromRole="User" ToRole="Family" />
@@ -1017,6 +1052,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Session__userId__4F7CD00D">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Session" Type="Self.Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Session">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Sharing__storyId__38996AB5">
           <End Role="Story" Type="Self.Story" Multiplicity="1" />
           <End Role="Sharing" Type="Self.Sharing" Multiplicity="*" />
@@ -1073,7 +1120,7 @@
           <End Role="GeneralPost" Type="Self.GeneralPost" Multiplicity="*" />
           <End Role="Tag" Type="Self.Tag" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="FamsamEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="FamsamEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Album" EntityType="Self.Album" />
           <EntitySet Name="Comment" EntityType="Self.Comment" />
           <EntitySet Name="Family" EntityType="Self.Family" />
@@ -1083,6 +1130,7 @@
           <EntitySet Name="NeighborRequest" EntityType="Self.NeighborRequest" />
           <EntitySet Name="Photo" EntityType="Self.Photo" />
           <EntitySet Name="Report" EntityType="Self.Report" />
+          <EntitySet Name="Session" EntityType="Self.Session" />
           <EntitySet Name="Sharing" EntityType="Self.Sharing" />
           <EntitySet Name="Story" EntityType="Self.Story" />
           <EntitySet Name="Tag" EntityType="Self.Tag" />
@@ -1148,6 +1196,10 @@
             <End Role="User" EntitySet="User" />
             <End Role="Report" EntitySet="Report" />
           </AssociationSet>
+          <AssociationSet Name="FK__Session__userId__4F7CD00D" Association="Self.FK__Session__userId__4F7CD00D">
+            <End Role="User" EntitySet="User" />
+            <End Role="Session" EntitySet="Session" />
+          </AssociationSet>
           <AssociationSet Name="FK__Sharing__storyId__38996AB5" Association="Self.FK__Sharing__storyId__38996AB5">
             <End Role="Story" EntitySet="Story" />
             <End Role="Sharing" EntitySet="Sharing" />
@@ -1186,7 +1238,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="famsamModelStoreContainer" CdmEntityContainer="FamsamEntities1">
+        <EntityContainerMapping StorageEntityContainer="famsamModelStoreContainer" CdmEntityContainer="FamsamEntities">
           <EntitySetMapping Name="Album">
             <EntityTypeMapping TypeName="famsamModel.Album">
               <MappingFragment StoreEntitySet="Album">
@@ -1271,6 +1323,15 @@
                 <ScalarProperty Name="photoId" ColumnName="photoId" />
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="reason" ColumnName="reason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Session">
+            <EntityTypeMapping TypeName="famsamModel.Session">
+              <MappingFragment StoreEntitySet="Session">
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="expired" ColumnName="expired" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

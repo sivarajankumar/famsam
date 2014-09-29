@@ -21,6 +21,7 @@ namespace ServerAPI.Models
             this.GeneralPost = new HashSet<GeneralPost>();
             this.NeighborRequest = new HashSet<NeighborRequest>();
             this.Report = new HashSet<Report>();
+            this.Session = new HashSet<Session>();
             this.Sharing = new HashSet<Sharing>();
             this.Family = new HashSet<Family>();
             this.GeneralPost1 = new HashSet<GeneralPost>();
@@ -47,6 +48,7 @@ namespace ServerAPI.Models
         public virtual ICollection<GeneralPost> GeneralPost { get; set; }
         public virtual ICollection<NeighborRequest> NeighborRequest { get; set; }
         public virtual ICollection<Report> Report { get; set; }
+        public virtual ICollection<Session> Session { get; set; }
         public virtual ICollection<Sharing> Sharing { get; set; }
         public virtual UserRole UserRole { get; set; }
         public virtual ICollection<Family> Family { get; set; }

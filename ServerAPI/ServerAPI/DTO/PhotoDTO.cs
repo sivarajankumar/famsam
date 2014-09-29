@@ -9,9 +9,10 @@ namespace ServerAPI.DTO
     public class PhotoDTO
     {
         public long Id { get; set; }
-        public string AuthorName { get; set; }
+        public string AuthorFirstName { get; set; }
+        public string AuthorLastName { get; set; }
         public string AuthorEmail { get; set; }
-        public DateTime LastUpdate { get; set; }
+        public Nullable<DateTime> LastUpdate { get; set; }
         public string Description { get; set; }
         public string ImageURL { get; set; }
         public string BadQuality { get; set; }
