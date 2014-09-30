@@ -17,9 +17,18 @@ namespace ServerAPI.DTO
             this.Message = Message;
         }
 
+        public ApiResult(string Code, string Message, dynamic Content)
+        {
+            this.Code = Code;
+            this.Message = Message;
+            this.Content = Content;
+        }
+
         public ApiResult clone()
         {
-            return new ApiResult(this.Code, this.Message);
+            ApiResult r = new ApiResult(this.Code, this.Message);
+            r.Content = this.Content;
+            return r;
         }
     }
 }

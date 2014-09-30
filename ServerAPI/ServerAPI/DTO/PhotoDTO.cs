@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+//cai dbs day ha
+//m xai ef hay cai j 
+//giobf cai nay ne
 
 namespace ServerAPI.DTO
 {
@@ -16,6 +19,7 @@ namespace ServerAPI.DTO
         public string Description { get; set; }
         public string ImageURL { get; set; }
         public string BadQuality { get; set; }
+        public string[] tags { get; set; }
     }
 
     public class PhotoApiResult
