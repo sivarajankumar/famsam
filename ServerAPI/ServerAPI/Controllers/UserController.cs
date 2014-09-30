@@ -1,5 +1,5 @@
 ﻿
-using ServerAPI.Models;
+//using ServerAPI.Models;
 using ServerAPI.DTO;
 using System;
 using System.Collections.Generic;
@@ -7,18 +7,19 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using ServerAPI.CF_Models;
 
 namespace ServerAPI.Controllers
 {
     public class UserController : ApiController
     {
-        private FamsamEntities db = new FamsamEntities();
+        private CF_FamsamEntities db = new CF_FamsamEntities();
         [HttpPost]
         [ActionName("login")]
         public IHttpActionResult Login([FromBody] UserLoginDTO userLogin)
         {
             ApiResult result;
-
+            
             IQueryable<User> query = from a in db.User
                                      where (a.email == userLogin.Email && a.password == userLogin.Password)
                                             select a;

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9ef5f66bdc584bb8802f7d8d7a25bf3a" Name="Diagram1">
+      <Diagram DiagramId="f4aeaf3e843441eda3b34774715bd942" Name="Diagram1">
         <EntityTypeShape EntityType="famsamModel.Album" Width="1.5" PointX="10.5" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="famsamModel.Comment" Width="1.5" PointX="10.5" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="famsamModel.Family" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
@@ -17,6 +17,7 @@
         <EntityTypeShape EntityType="famsamModel.Session" Width="1.5" PointX="8.25" PointY="13.75" IsExpanded="true" />
         <EntityTypeShape EntityType="famsamModel.Sharing" Width="1.5" PointX="6" PointY="13" IsExpanded="true" />
         <EntityTypeShape EntityType="famsamModel.Story" Width="1.5" PointX="12.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="famsamModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="famsamModel.Tag" Width="1.5" PointX="10.5" PointY="11.5" IsExpanded="true" />
         <EntityTypeShape EntityType="famsamModel.User" Width="1.5" PointX="6" PointY="6.375" IsExpanded="true" />
         <EntityTypeShape EntityType="famsamModel.UserRole" Width="1.5" PointX="3.75" PointY="7.5" IsExpanded="true" />

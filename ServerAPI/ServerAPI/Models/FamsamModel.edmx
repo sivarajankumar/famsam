@@ -148,6 +148,16 @@
           <Property Name="storyId" Type="int" Nullable="false" />
           <Property Name="albumId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="Tag">
           <Key>
             <PropertyRef Name="name" />
@@ -554,6 +564,7 @@
           <EntitySet Name="Sharing" EntityType="Self.Sharing" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Story" EntityType="Self.Story" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Story_Album" EntityType="Self.Story_Album" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tag" EntityType="Self.Tag" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tagging" EntityType="Self.Tagging" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -826,6 +837,16 @@
           <NavigationProperty Name="GeneralPost" Relationship="Self.FK__Story__id__1A14E395" FromRole="Story" ToRole="GeneralPost" />
           <NavigationProperty Name="Sharing" Relationship="Self.FK__Sharing__storyId__38996AB5" FromRole="Story" ToRole="Sharing" />
           <NavigationProperty Name="Album" Relationship="Self.Story_Album" FromRole="Story" ToRole="Album" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Tag">
           <Key>
@@ -1133,6 +1154,7 @@
           <EntitySet Name="Session" EntityType="Self.Session" />
           <EntitySet Name="Sharing" EntityType="Self.Sharing" />
           <EntitySet Name="Story" EntityType="Self.Story" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Tag" EntityType="Self.Tag" />
           <EntitySet Name="User" EntityType="Self.User" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" />
@@ -1352,6 +1374,17 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="privacy" ColumnName="privacy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="famsamModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

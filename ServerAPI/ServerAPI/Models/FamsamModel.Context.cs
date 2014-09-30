@@ -37,6 +37,7 @@ namespace ServerAPI.Models
         public virtual DbSet<Session> Session { get; set; }
         public virtual DbSet<Sharing> Sharing { get; set; }
         public virtual DbSet<Story> Story { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tag> Tag { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<UserRole> UserRole { get; set; }

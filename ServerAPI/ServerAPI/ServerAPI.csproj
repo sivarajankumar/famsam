@@ -109,6 +109,8 @@
   <ItemGroup>
     <Compile Include="App_Start\MyHttpControllerHandler.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Photos1Controller.cs" />
+    <Compile Include="Controllers\PhotosController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAO\AlbumDAO.cs" />
     <Compile Include="DAO\PhotoDAO.cs" />
@@ -122,6 +124,11 @@
     <Compile Include="Models\Album.cs">
       <DependentUpon>FamsamModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CF_Family.cs" />
+    <Compile Include="Models\CF_FamsamEntities.cs" />
+    <Compile Include="Models\CF_Post.cs" />
+    <Compile Include="Models\CF_User.cs" />
+    <Compile Include="Models\CF_UserActivity.cs" />
     <Compile Include="Models\Comment.cs">
       <DependentUpon>FamsamModel.tt</DependentUpon>
     </Compile>
@@ -136,15 +143,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FamsamModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\FamsamModel.cs">
+    <Compile Include="Models\FamsamModel.cs" />
+    <Compile Include="Models\FamsamModel.Designer.cs">
+      <DependentUpon>FamsamModel.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Models\FamsamModel1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FamsamModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FamsamModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FamsamModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\GeneralPost.cs">
       <DependentUpon>FamsamModel.tt</DependentUpon>
@@ -168,6 +176,9 @@
       <DependentUpon>FamsamModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Story.cs">
+      <DependentUpon>FamsamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>FamsamModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tag.cs">
@@ -199,8 +210,9 @@
     <Content Include="Models\FamsamModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>FamsamModel.edmx</DependentUpon>
-      <LastGenOutput>FamsamModel.cs</LastGenOutput>
+      <LastGenOutput>FamsamModel1.cs</LastGenOutput>
     </Content>
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
