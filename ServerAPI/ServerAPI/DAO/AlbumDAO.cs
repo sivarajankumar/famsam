@@ -133,8 +133,6 @@ namespace ServerAPI.DAO
         {
             using (var context = new FamsamEntities())
             {
-                var post = context.GeneralPost.FirstOrDefault(p => p.id == albumId);
-                var album = context.GeneralPost.FirstOrDefault(a => a.id == albumId);
                 return 0;
             }
         }
