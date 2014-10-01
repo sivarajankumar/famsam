@@ -24,6 +24,7 @@ namespace ServerAPI.CF_Models
 
 
         public virtual ICollection<FamilyRole> FamilyRole { get; set; }
+        public virtual ICollection<Neighborhood> Neighborhood { get; set; }
         public virtual ICollection<NeighborRequest> NeighborRequest { get; set; }
         public virtual ICollection<Sharing> Sharing { get; set; }
         public virtual ICollection<User> User { get; set; }
