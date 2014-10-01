@@ -24,6 +24,7 @@ namespace ServerAPI.CF_Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //remove convention
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
             //----------------------User
@@ -63,6 +64,7 @@ namespace ServerAPI.CF_Models
             var comment = modelBuilder.Entity<Comment>();
             comment.HasKey(c => new { c.userId, c.postId });
             comment.HasRequired(c => c.User).WithMany().HasForeignKey(c => c.userId).WillCascadeOnDelete(false);
+            comment.HasRequired(c => c.GeneralPost).WithMany(p => p.Comment).HasForeignKey(c => c.postId).WillCascadeOnDelete(false);
             //share
             var share = modelBuilder.Entity<Sharing>();
             share.HasKey(s => new {s.generalPostId, s.userId, s.sharedFamilyId});

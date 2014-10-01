@@ -191,6 +191,7 @@
       <DependentUpon>FamsamModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Base64Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
