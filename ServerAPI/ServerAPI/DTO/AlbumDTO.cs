@@ -15,7 +15,7 @@ namespace ServerAPI.DTO
         public string AuthorFirstname { get; set; }
         public string AuthorLastname { get; set; }
         public string AuthorEmail { get; set; }
-        public List<PhotoDTO> ListPhoto { get; set; }
+        public ICollection<PhotoDTO> ListPhoto { get; set; }
     }
 
     public class AlbumApiResult
@@ -24,13 +24,23 @@ namespace ServerAPI.DTO
         public static ApiResult AlbumNotFound { get; private set; }
         public static ApiResult AlbumResult { get; private set; }
         public static ApiResult UploadAlbumSuccess { get; private set; }
+        public static ApiResult UploadAlbumFail { get; private set; }
+        public static ApiResult UpdateAlbumSuccess { get; private set; }
+        public static ApiResult UpdateAlbumFail { get; private set; }
+        public static ApiResult RemoveAlbumSuccess { get; private set; }
+        public static ApiResult RemoveAlbumFail { get; private set; }
 
         static AlbumApiResult()
         {
-            ListAlbums = new ApiResult("010", "albums result");
-            AlbumNotFound = new ApiResult("011", "album not found");
-            AlbumResult = new ApiResult("012", "album result");
-            UploadAlbumSuccess = new ApiResult("013", "upload album success");
+            ListAlbums = new ApiResult("010", "List Album Result");
+            AlbumNotFound = new ApiResult("011", "Album Not Found");
+            AlbumResult = new ApiResult("012", "Album Result");
+            UploadAlbumSuccess = new ApiResult("013", "Upload Album Successful");
+            UploadAlbumFail = new ApiResult("014", "Upload Album Fail");
+            UpdateAlbumSuccess = new ApiResult("015", "Update Album Successful");
+            UpdateAlbumFail = new ApiResult("016", "Update Album Fail");
+            RemoveAlbumSuccess = new ApiResult("017", "Remove Album Successful");
+            RemoveAlbumFail = new ApiResult("018", "Remove Album Fail");
         }
     }
 }
