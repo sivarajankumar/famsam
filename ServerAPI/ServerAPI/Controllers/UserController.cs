@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using ServerAPI.CF_Models;
+using ServerAPI.Utils;
 
 namespace ServerAPI.Controllers
 {
@@ -31,10 +32,11 @@ namespace ServerAPI.Controllers
             else
             {
                 //login success
+                //create session
                 Session session = new Session();
                 session.User = user;
                 DateTime now = DateTime.Now;
-                session.token = now.Millisecond + "";
+                session.token = Base64Utils.Base64Encode(user.email + ":" + user.password);
                 session.expired = now.AddHours(2);
                 db.Session.Add(session);
                 db.SaveChanges();
@@ -42,7 +44,7 @@ namespace ServerAPI.Controllers
                 LoginResultContentDTO loginDTO = new LoginResultContentDTO();
                 loginDTO.Message = "login success";
                 loginDTO.Token = session.token;
-
+                
                 result = UserApiResult.LoginSuccess;
                 result.Content = loginDTO;
 

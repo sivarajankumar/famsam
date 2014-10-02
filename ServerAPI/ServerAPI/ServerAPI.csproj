@@ -114,6 +114,7 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAO\AlbumDAO.cs" />
     <Compile Include="DAO\PhotoDAO.cs" />
+    <Compile Include="DAO\UserDAO.cs" />
     <Compile Include="DTO\AlbumDTO.cs" />
     <Compile Include="DTO\PhotoDTO.cs" />
     <Compile Include="Global.asax.cs">

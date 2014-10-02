@@ -16,6 +16,7 @@ namespace ServerAPI.CF_Models
         public DbSet<Tag> Tag { get; set; }
         public DbSet<GeneralPost> GeneralPost { get; set; }
         public DbSet<User> User { get; set; }
+        public DbSet<UserRole> UserRole { get; set; }
         public DbSet<Session> Session { get; set; }
         public DbSet<Story> Story { get; set; }
         public DbSet<Album> Album { get; set; }
