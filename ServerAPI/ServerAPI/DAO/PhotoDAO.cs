@@ -11,55 +11,96 @@ namespace ServerAPI.DAO
 {
     public class PhotoDAO
     {
-        public const string PHOTO_POST_TYPE = "Photo";
+        
         /// <summary>
-        /// List photos
+        /// List all photos
         /// </summary>
+        /// <param name="userId">Id of user</param>
         /// <param name="page"></param>
         /// <param name="size"></param>
         /// <returns>List of photos (0 item at least)</returns>
         public static List<PhotoDTO> ListPhotos(int userId, int page, int size)
         {
             List<GeneralPost> photos = new List<GeneralPost>();
+            List<PhotoDTO> result = new List<PhotoDTO>();
             using (var db = new CF_FamsamEntities())
             {
                 var photoQuery = from p in db.GeneralPost
-                                 where p.postType == PHOTO_POST_TYPE
+                                 where p.postType == GeneralPost.PHOTO_POST_TYPE
                                  orderby p.lastUpdate descending
                                  select p;
-                photos = photoQuery.Skip((page - 1) * size)
+                    photos = photoQuery.Skip((page - 1) * size)
                                    .Take(size)
                                    .ToList<GeneralPost>();
-            }
-            List<PhotoDTO> result = new List<PhotoDTO>();
-            //to dto
-            foreach (GeneralPost photo in photos)
-            {
-                PhotoDTO photoDTO = new PhotoDTO();
-                photoDTO.Id = photo.Id;
-                photoDTO.AuthorFirstName = photo.CreateUser.firstname;
-                photoDTO.AuthorLastName = photo.CreateUser.lastname;
-                photoDTO.LastUpdate = photo.lastUpdate;
-                photoDTO.Description = photo.description;
-                photoDTO.ImageURL = photo.Photo.url;
-                photoDTO.BadQuality = photo.Photo.badQuality;
-                result.Add(photoDTO);
-            }
 
+                //to dto
+                foreach (GeneralPost photo in photos)
+                {
+                    PhotoDTO photoDTO = new PhotoDTO();
+                    photoDTO.Id = photo.Id;
+                    photoDTO.AuthorFirstName = photo.CreateUser.firstname;
+                    photoDTO.AuthorLastName = photo.CreateUser.lastname;
+                    photoDTO.LastUpdate = photo.lastUpdate;
+                    photoDTO.Description = photo.description;
+                    photoDTO.ImageURL = photo.Photo.url;
+                    photoDTO.BadQuality = photo.Photo.badQuality;
+                    result.Add(photoDTO);
+                }
+            }
             return result;
         }
 
+        /// <summary>
+        /// List all photos by album
+        /// </summary>
+        /// <param name="userId">Id of user</param>
+        /// <param name="page"></param>
+        /// <param name="size"></param>
+        /// <param name="albumId"></param>
+        /// <returns>List of photos (0 item at least)</returns>
+        public static List<PhotoDTO> ListPhotos(int userId, int page, int size, int albumId)
+        {
+            List<GeneralPost> photos = new List<GeneralPost>();
+            List<PhotoDTO> result = new List<PhotoDTO>();
+            using (var db = new CF_FamsamEntities())
+            {
+                var albumQuery = from p in db.GeneralPost
+                                 where p.postType == GeneralPost.ALBUM_POST_TYPE && p.Id == albumId
+                                 orderby p.lastUpdate descending
+                                 select p;
+                GeneralPost post = albumQuery.FirstOrDefault<GeneralPost>();
+                if (post == null) return result;
+                
+                //to dto
+                foreach (Photo photo in post.Album.Photo)
+                {
+                    PhotoDTO photoDTO = new PhotoDTO();
+                    GeneralPost photoPost = photo.Post;
+                    photoDTO.Id = post.Id;
+                    photoDTO.AuthorFirstName = photoPost.CreateUser.firstname;
+                    photoDTO.AuthorLastName = photoPost.CreateUser.lastname;
+                    photoDTO.LastUpdate = photoPost.lastUpdate;
+                    photoDTO.Description = photoPost.description;
+                    photoDTO.ImageURL = photo.url;
+                    photoDTO.BadQuality = photo.badQuality;
+                    result.Add(photoDTO);
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Create a Photo entity of non-album.
+        /// </summary>
+        /// <param name="photoDTO"></param>
+        /// <returns>-1 if user not found</returns>
         public static int CreatePhoto(PhotoDTO photoDTO)
         {
             //get user
             User user;
             using (var db = new CF_FamsamEntities())
             {
-
-                var userQuery = from u in db.User
-                                where u.email == photoDTO.AuthorEmail
-                                select u;
-                user = userQuery.FirstOrDefault();
+                user = db.User.Find(photoDTO.AuthorId);
                 if (user == null)
                 {
                     return -1;
@@ -73,7 +114,7 @@ namespace ServerAPI.DAO
                 photo.badQuality = photoDTO.BadQuality;
                 GeneralPost post = new GeneralPost();
                 post.Id = photo.id;
-                post.postType = PHOTO_POST_TYPE;
+                post.postType = GeneralPost.PHOTO_POST_TYPE;
                 post.Photo = photo;
                 post.createUserId = user.id;
                 post.CreateUser = user;
