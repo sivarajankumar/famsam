@@ -21,7 +21,7 @@ namespace ServerAPI.Controllers
         public IHttpActionResult ListAllPhoto(int page = 1, int size = 10)
         {
             ApiResult result;
-            List<PhotoDTO> photoDTOs = PhotoDAO.ListPhotos(1, page, size, 0);
+            List<PhotoDTO> photoDTOs = PhotoDAO.ListPhotosByAlbum(1, page, size, 0);
             result = new ApiResult("123", "Photos Result", photoDTOs);
             return Ok(result);
         }
@@ -31,7 +31,7 @@ namespace ServerAPI.Controllers
         public IHttpActionResult ListPhotoByAlbum(int page = 1, int size = 10, int albumId = 0)
         {
             ApiResult result;
-            List<PhotoDTO> photoDTOs = PhotoDAO.ListPhotos(1, page, size, albumId);
+            List<PhotoDTO> photoDTOs = PhotoDAO.ListPhotosByAlbum(1, page, size, albumId);
             result = new ApiResult("123", "Photos Result", photoDTOs);
             return Ok(result);
         }
@@ -40,7 +40,7 @@ namespace ServerAPI.Controllers
         [ActionName("add")]
         public HttpResponseMessage AddPhoto(HttpRequestMessage request, [FromBody] PhotoDTO photoDTO)
         {
-            int aResult = SessionDAO.Authorization(request.Headers);
+            long aResult = SessionDAO.Authentication(request.Headers);
             switch (aResult)
             {
                 case -401:
@@ -51,7 +51,7 @@ namespace ServerAPI.Controllers
                     
                 default:
                     photoDTO.AuthorId = aResult; 
-                    int cResult = PhotoDAO.CreatePhoto(photoDTO);
+                    int cResult = PhotoDAO.AddPhoto(photoDTO);
                     if (cResult != -1)
                     {
                         return Request.CreateResponse(HttpStatusCode.OK, PhotoApiResult.AddPhotoSuccess);

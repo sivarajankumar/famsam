@@ -21,6 +21,7 @@ namespace ServerAPI.CF_Models
         public DbSet<Story> Story { get; set; }
         public DbSet<Album> Album { get; set; }
         public DbSet<Photo> Photo { get; set; }
+        public DbSet<Sharing> Sharing { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

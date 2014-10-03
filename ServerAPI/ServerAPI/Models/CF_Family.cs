@@ -16,7 +16,7 @@ namespace ServerAPI.CF_Models
             this.User = new HashSet<User>();
         }
 
-        public int id { get; set; }
+        public long id { get; set; }
         public string name { get; set; }
         public System.DateTime date { get; set; }
         public string coverURL { get; set; }
@@ -33,8 +33,8 @@ namespace ServerAPI.CF_Models
 
     public class FamilyRole
     {
-        public int userId { get; set; }
-        public int familyId { get; set; }
+        public long userId { get; set; }
+        public long familyId { get; set; }
         public string roleName { get; set; }
         public System.DateTime dateJoin { get; set; }
 
@@ -44,8 +44,8 @@ namespace ServerAPI.CF_Models
 
     public class Neighborhood
     {
-        public int familyId { get; set; }
-        public int neighborId { get; set; }
+        public long familyId { get; set; }
+        public long neighborId { get; set; }
         public System.DateTime date { get; set; }
 
         public virtual Family Family { get; set; }
@@ -53,8 +53,8 @@ namespace ServerAPI.CF_Models
     }
     public class NeighborRequest
     {
-        public int userId { get; set; }
-        public int familyId { get; set; }
+        public long userId { get; set; }
+        public long familyId { get; set; }
         public string status { get; set; }
 
         public virtual Family Family { get; set; }

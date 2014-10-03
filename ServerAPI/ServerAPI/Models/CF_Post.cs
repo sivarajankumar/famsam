@@ -28,12 +28,12 @@ namespace ServerAPI.CF_Models
             this.Tag = new HashSet<Tag>();
         }
 
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string description { get; set; }
         public System.DateTime lastUpdate { get; set; }
         [Required]
         public string postType { get; set; }
-        public int createUserId { get; set; }
+        public long createUserId { get; set; }
 
         public virtual ICollection<Comment> Comment { get; set; }
         public virtual ICollection<User> LikeUser { get; set; }
@@ -44,16 +44,28 @@ namespace ServerAPI.CF_Models
         public virtual Story Story { get; set; }
         public virtual Album Album { get; set; }
         public virtual Photo Photo { get; set; }
+        public string[] GetTagNameArray()
+        {
+            int size = Tag.Count;
+            List<String> tagNameList = new List<String>();
+            foreach (Tag tag in Tag)
+            {
+                tagNameList.Add(tag.name);
+            }
+            return tagNameList.ToArray();
+        }
     }
     public class Story
     {
+        public const string PUBLIC_PRIVACY = "public";
+        public const string FAMILY_ONLY_PRIVACY = "family_only";
         public Story()
         {
             this.Album = new HashSet<Album>();
         }
-        public int id { get; set; }
+        public long id { get; set; }
         //foreign key
-        public int familyId { get; set; }
+        public long familyId { get; set; }
         public string title { get; set; }
         public string privacy { get; set; }
         public virtual ICollection<Album> Album { get; set; }
@@ -67,7 +79,7 @@ namespace ServerAPI.CF_Models
             this.Photo = new HashSet<Photo>();
             this.Story = new HashSet<Story>();
         }
-        public int id { get; set; }
+        public long id { get; set; }
         public string title { get; set; }
 
         public virtual ICollection<Photo> Photo { get; set; }
@@ -80,7 +92,7 @@ namespace ServerAPI.CF_Models
         {
             this.Album = new HashSet<Album>();
         }
-        public int id { get; set; }
+        public long id { get; set; }
         public string url { get; set; }
         public string badQuality { get; set; }
         public virtual ICollection<Album> Album { get; set; }

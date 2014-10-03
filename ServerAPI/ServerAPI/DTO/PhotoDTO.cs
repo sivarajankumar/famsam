@@ -11,7 +11,7 @@ namespace ServerAPI.DTO
 {
     public class PhotoDTO
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public long AuthorId { get; set; }
         public string AuthorFirstName { get; set; }
         public string AuthorLastName { get; set; }
