@@ -20,6 +20,10 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <ApplicationInsightsResourceId>/subscriptions/98f89436-c170-4864-987b-1e2ac8b19946/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/ServerAPI</ApplicationInsightsResourceId>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -110,7 +114,6 @@
     <Compile Include="App_Start\MyHttpControllerHandler.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AlbumsController.cs" />
-    <Compile Include="Controllers\Photos1Controller.cs" />
     <Compile Include="Controllers\PhotosController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAO\AlbumDAO.cs" />

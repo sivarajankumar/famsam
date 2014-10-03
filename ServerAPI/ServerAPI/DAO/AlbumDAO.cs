@@ -14,7 +14,7 @@ namespace ServerAPI.DAO
         private const string ALBUM_POST_TYPE = "Album";
 
         // list all albums of a user
-        public static List<AlbumDTO> ListAlbums(int userId, int page, int size)
+        public static List<AlbumDTO> ListAlbums(long userId, int page, int size)
         {
             using (var context = new CF_FamsamEntities())
             {
@@ -41,7 +41,7 @@ namespace ServerAPI.DAO
         }
 
         // list albums by story of a user
-        public static List<AlbumDTO> ListAlbumsByStory(int page, int size, int storyId)
+        public static List<AlbumDTO> ListAlbumsByStory(int page, int size, long storyId)
         {
             using (var context = new CF_FamsamEntities())
             {
@@ -68,7 +68,7 @@ namespace ServerAPI.DAO
         }
 
         // get album by albumid
-        public static AlbumDTO GetAlbumById(int albumId)
+        public static AlbumDTO GetAlbumById(long albumId)
         {
             using (var context = new CF_FamsamEntities())
             {
@@ -208,7 +208,7 @@ namespace ServerAPI.DAO
         // current user remove an album
         // return -1 if fail
         // return 0 if success
-        public static int RemoveAlbum(int albumId, bool agreeToRemove)
+        public static int RemoveAlbum(long albumId, bool agreeToRemove)
         {
             using (var context = new CF_FamsamEntities())
             {

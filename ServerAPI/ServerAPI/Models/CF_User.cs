@@ -17,7 +17,7 @@ namespace ServerAPI.CF_Models
             this.Family = new HashSet<Family>();
         }
 
-        public int id { get; set; }
+        public long id { get; set; }
         public string email { get; set; }
         public string password { get; set; }
         public string firstname { get; set; }

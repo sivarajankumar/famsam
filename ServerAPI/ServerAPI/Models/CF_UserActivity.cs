@@ -7,8 +7,8 @@ namespace ServerAPI.CF_Models
 {
     public class Comment
     {
-        public int userId { get; set; }
-        public int postId { get; set; }
+        public long userId { get; set; }
+        public long postId { get; set; }
         public System.DateTime date { get; set; }
         public string content { get; set; }
 
@@ -17,8 +17,8 @@ namespace ServerAPI.CF_Models
     }
     public class Report
     {
-        public int userId { get; set; }
-        public int photoId { get; set; }
+        public long userId { get; set; }
+        public long photoId { get; set; }
         public System.DateTime date { get; set; }
         public string reason { get; set; }
 
@@ -27,9 +27,9 @@ namespace ServerAPI.CF_Models
     }
     public class Sharing
     {
-        public int userId { get; set; }
-        public int generalPostId { get; set; }
-        public int sharedFamilyId { get; set; }
+        public long userId { get; set; }
+        public long generalPostId { get; set; }
+        public long sharedFamilyId { get; set; }
         public System.DateTime date { get; set; }
         public string message { get; set; }
 

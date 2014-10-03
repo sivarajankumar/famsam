@@ -11,7 +11,6 @@ namespace ServerAPI.DAO
 {
     public class PhotoDAO
     {
-        
         /// <summary>
         /// List all photos
         /// </summary>
@@ -19,7 +18,7 @@ namespace ServerAPI.DAO
         /// <param name="page"></param>
         /// <param name="size"></param>
         /// <returns>List of photos (0 item at least)</returns>
-        public static List<PhotoDTO> ListPhotos(int userId, int page, int size)
+        public static List<PhotoDTO> ListCurrentPhotos(int userId, int page, int size)
         {
             List<GeneralPost> photos = new List<GeneralPost>();
             List<PhotoDTO> result = new List<PhotoDTO>();
@@ -50,6 +49,33 @@ namespace ServerAPI.DAO
             return result;
         }
 
+        public static List<PhotoDTO> ListOtherUserPhotos(long currentUserId, long otherUserId,long storyId, long albumId, int page, int size)
+        {
+            List<PhotoDTO> photoDTOs = new List<PhotoDTO>();
+            using (var db = new CF_FamsamEntities())
+            {
+                //query album
+
+                Album album = db.Story.Find(storyId).Album.Where<Album>(a => a.id == albumId).First();
+                if (album != null)
+                {
+                    foreach (var photo in album.Photo)
+                    {
+                        PhotoDTO photoDTO = new PhotoDTO();
+                        photoDTO.Id = photo.id;
+                        photoDTO.AuthorFirstName = photo.Post.CreateUser.firstname;
+                        photoDTO.AuthorLastName = photo.Post.CreateUser.lastname;
+                        photoDTO.LastUpdate = photo.Post.lastUpdate;
+                        photoDTO.Description = photo.Post.description;
+                        photoDTO.ImageURL = photo.url;
+                        photoDTO.BadQuality = photo.badQuality;
+                        photoDTOs.Add(photoDTO);
+                    }
+                }
+            }
+            return photoDTOs;
+        }
+
         /// <summary>
         /// List all photos by album
         /// </summary>
@@ -58,7 +84,7 @@ namespace ServerAPI.DAO
         /// <param name="size"></param>
         /// <param name="albumId"></param>
         /// <returns>List of photos (0 item at least)</returns>
-        public static List<PhotoDTO> ListPhotos(int userId, int page, int size, int albumId)
+        public static List<PhotoDTO> ListPhotosByAlbum(int userId, int page, int size, int albumId)
         {
             List<GeneralPost> photos = new List<GeneralPost>();
             List<PhotoDTO> result = new List<PhotoDTO>();
@@ -94,7 +120,7 @@ namespace ServerAPI.DAO
         /// </summary>
         /// <param name="photoDTO"></param>
         /// <returns>-1 if user not found</returns>
-        public static int CreatePhoto(PhotoDTO photoDTO)
+        public static int AddPhoto(PhotoDTO photoDTO)
         {
             //get user
             User user;
@@ -173,6 +199,25 @@ namespace ServerAPI.DAO
             }
             return 0;
         }
+        public static PhotoDTO GetPhoto(long photoId)
+        {
+            using (var db = new CF_FamsamEntities())
+            {
+                Photo photo = db.Photo.Find(photoId);
+                PhotoDTO photoDTO = new PhotoDTO();
+                photoDTO.Id = photo.id;
+                GeneralPost post = photo.Post;
+                User user = post.CreateUser;
+                photoDTO.AuthorId = user.id;
+                photoDTO.AuthorEmail = user.email;
+                photoDTO.LastUpdate = post.lastUpdate;
+                photoDTO.Description = post.description;
+                photoDTO.ImageURL = photo.url;
+                photoDTO.BadQuality = photo.badQuality;
+                photoDTO.tags = post.GetTagNameArray();
+                return photoDTO;
+            }
+        }
 
         public static void DeletePhoto(int photoId)
         {
@@ -189,12 +234,6 @@ namespace ServerAPI.DAO
                 }
             }
 
-        }
-
-
-        internal static void ListPhotos(string p, int page, int size)
-        {
-            throw new NotImplementedException();
         }
     }
 
