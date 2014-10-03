@@ -54,7 +54,7 @@ namespace ServerAPI.CF_Models
             familyRole.HasRequired(fr => fr.User).WithMany(u => u.FamilyRole).HasForeignKey(fr => fr.userId);
             //Followed by
             var family = modelBuilder.Entity<Family>();
-            family.HasMany(f => f.User).WithMany(u => u.Family).Map(m =>
+            family.HasMany(f => f.FollowUser).WithMany(u => u.Family).Map(m =>
             {
                 m.ToTable("Following");
                 m.MapLeftKey("familyId");

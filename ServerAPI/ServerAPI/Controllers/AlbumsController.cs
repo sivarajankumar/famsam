@@ -14,10 +14,10 @@ namespace ServerAPI.Controllers
     {
         [HttpGet]
         [ActionName("listalbum")]
-        public IHttpActionResult GetAllAlbums(int userId, int page, int size)
+        public IHttpActionResult GetAllAlbums(long userId, int page, int size)
         {
             ApiResult result;
-            List<AlbumDTO> listAlbum = AlbumDAO.ListAlbums(userId, page, size);
+            List<AlbumDTO> listAlbum = AlbumDAO.ListAlbumsOfCurrentUser(userId, page, size);
             result = AlbumApiResult.ListAlbums;
             result.Content = listAlbum;
             return Ok(result);
@@ -25,10 +25,10 @@ namespace ServerAPI.Controllers
 
         [HttpGet]
         [ActionName("listalbumbystory")]
-        public IHttpActionResult GetListAlbumsByStory(int page, int size, int storyId)
+        public IHttpActionResult GetListAlbumsByStory(long userId, int page, int size, long storyId)
         {
             ApiResult result;
-            List<AlbumDTO> listAlbum = AlbumDAO.ListAlbumsByStory(page, size, storyId);
+            List<AlbumDTO> listAlbum = AlbumDAO.ListAlbumsByStory(userId, page, size, storyId);
             result = AlbumApiResult.ListAlbums;
             result.Content = listAlbum;
             return Ok(result);
@@ -36,10 +36,10 @@ namespace ServerAPI.Controllers
 
         [HttpGet]
         [ActionName("getalbumbyid")]
-        public IHttpActionResult GetAlbumById(int albumId)
+        public IHttpActionResult GetAlbumById(long userId, int page, int size, long albumId)
         {
             ApiResult result;
-            AlbumDTO album = AlbumDAO.GetAlbumById(albumId);
+            AlbumDTO album = AlbumDAO.GetAlbumById(userId, page, size, albumId);
             if (album == null)
             {
                 result = AlbumApiResult.AlbumNotFound;

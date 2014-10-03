@@ -11,7 +11,6 @@ namespace ServerAPI.DTO
         public string Title { get; set; }
         public string Description { get; set; }
         public Nullable<DateTime> LastUpdate { get; set; }
-        public string PostType { get; set; }
         public string AuthorFirstname { get; set; }
         public string AuthorLastname { get; set; }
         public string AuthorEmail { get; set; }
