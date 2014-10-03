@@ -59,6 +59,7 @@ namespace ServerAPI.CF_Models
     {
         public const string PUBLIC_PRIVACY = "public";
         public const string FAMILY_ONLY_PRIVACY = "family_only";
+        public const string NEIGHBOR_ONLY_PRIVACY = "neighbor_only";
         public Story()
         {
             this.Album = new HashSet<Album>();

@@ -18,7 +18,7 @@ namespace ServerAPI.DAO
         /// <param name="page"></param>
         /// <param name="size"></param>
         /// <returns>List of photos (0 item at least)</returns>
-        public static List<PhotoDTO> ListCurrentPhotos(int userId, int page, int size)
+        public static List<PhotoDTO> ListCurrentPhotos(long userId, int page, int size)
         {
             List<GeneralPost> photos = new List<GeneralPost>();
             List<PhotoDTO> result = new List<PhotoDTO>();
@@ -84,7 +84,7 @@ namespace ServerAPI.DAO
         /// <param name="size"></param>
         /// <param name="albumId"></param>
         /// <returns>List of photos (0 item at least)</returns>
-        public static List<PhotoDTO> ListPhotosByAlbum(int userId, int page, int size, int albumId)
+        public static List<PhotoDTO> ListPhotosByAlbum(long userId, int page, int size, long albumId)
         {
             List<GeneralPost> photos = new List<GeneralPost>();
             List<PhotoDTO> result = new List<PhotoDTO>();
@@ -219,7 +219,7 @@ namespace ServerAPI.DAO
             }
         }
 
-        public static void DeletePhoto(int photoId)
+        public static void DeletePhoto(long photoId)
         {
             using (var db = new CF_FamsamEntities())
             {

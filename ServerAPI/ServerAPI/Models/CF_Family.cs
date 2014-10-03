@@ -13,7 +13,7 @@ namespace ServerAPI.CF_Models
             this.Neighborhood = new HashSet<Neighborhood>();
             this.NeighborRequest = new HashSet<NeighborRequest>();
             this.Sharing = new HashSet<Sharing>();
-            this.User = new HashSet<User>();
+            this.FollowUser = new HashSet<User>();
         }
 
         public long id { get; set; }
@@ -27,7 +27,7 @@ namespace ServerAPI.CF_Models
         public virtual ICollection<Neighborhood> Neighborhood { get; set; }
         public virtual ICollection<NeighborRequest> NeighborRequest { get; set; }
         public virtual ICollection<Sharing> Sharing { get; set; }
-        public virtual ICollection<User> User { get; set; }
+        public virtual ICollection<User> FollowUser { get; set; }
         public virtual ICollection<Story> Story { get; set; }
     }
 

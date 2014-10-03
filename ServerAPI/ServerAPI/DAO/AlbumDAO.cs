@@ -11,37 +11,75 @@ namespace ServerAPI.DAO
 {
     public class AlbumDAO
     {
-        private const string ALBUM_POST_TYPE = "Album";
 
-        // list all albums of a user
-        public static List<AlbumDTO> ListAlbums(long userId, int page, int size)
+        // list all albums of current user
+        public static List<AlbumDTO> ListAlbumsOfCurrentUser(long currentUserId, int page, int size)
         {
             using (var context = new CF_FamsamEntities())
             {
-                var user = context.User.FirstOrDefault(u => u.id == userId);
-                var generalPost = user.CreatedPost.Where(c => c.postType.Equals(ALBUM_POST_TYPE)).Skip((page -1) * size).Take(size).ToList();
+                var user = context.User.FirstOrDefault(u => u.id == currentUserId);
+                var albumList = user.CreatedPost.Where(c => c.postType.Equals(GeneralPost.ALBUM_POST_TYPE)).Skip((page - 1) * size).Take(size).ToList();
                 AlbumDTO albumInstance = new AlbumDTO();
-                List<AlbumDTO> listAlbum = new List<AlbumDTO>();
-                foreach (var item in generalPost)
+                List<AlbumDTO> listAlbumDTO = new List<AlbumDTO>();
+                foreach (var item in albumList)
                 {
                     albumInstance.Id = item.Id;
                     albumInstance.Title = item.Album.title;
                     albumInstance.Description = item.description;
                     albumInstance.LastUpdate = item.lastUpdate;
-                    albumInstance.PostType = item.postType;
                     albumInstance.AuthorFirstname = item.CreateUser.firstname;
                     albumInstance.AuthorLastname = item.CreateUser.lastname;
                     albumInstance.AuthorEmail = item.CreateUser.email;
+                    albumInstance.ListPhoto = PhotoDAO.ListPhotosByAlbum(currentUserId, page, size, item.Id);
 
-                    listAlbum.Add(albumInstance);
+                    listAlbumDTO.Add(albumInstance);
                 }
 
-                return (listAlbum.Count() > 0) ? listAlbum : new List<AlbumDTO>(0);
+                return (listAlbumDTO.Count() > 0) ? listAlbumDTO : new List<AlbumDTO>(0);
+            }
+        }
+
+        // list all albums of a user
+        // kho qua assign cho Nhut
+        public static List<AlbumDTO> ListAlbumsOfOtherUser(long currentUserId, long userId, int page, int size)
+        {
+            using (var context = new CF_FamsamEntities())
+            {
+                var currentUser = context.User.FirstOrDefault(u => u.id == currentUserId);
+                var user = context.User.FirstOrDefault(u => u.id == userId);
+                var storyPostList = user.CreatedPost.Where(c => c.postType.Equals(GeneralPost.STORY_POST_TYPE)).Skip((page -1) * size).Take(size).ToList();
+                AlbumDTO albumInstance = new AlbumDTO();
+                List<AlbumDTO> listAlbumDTO = new List<AlbumDTO>();
+                foreach (var item in storyPostList)
+                {
+                    bool check = false;
+                    if (item.Story.privacy.Equals(Story.PUBLIC_PRIVACY))
+                    {
+                        check = true;
+                    }
+                    if (item.Story.privacy.Equals(Story.FAMILY_ONLY_PRIVACY) && CheckUsersInFamily(currentUserId, userId, item.Story.familyId))
+                    {
+                        check = true;
+                    }
+                    //if (item.Story.privacy.Equals(Story.NEIGHBOR_ONLY_PRIVACY) && (CheckUsersInFamily(currentUserId, userId, item.Story.familyId)))
+                    //albumInstance.Id = item.Id;
+                    //albumInstance.Title = item.Album.title;
+                    //albumInstance.Description = item.description;
+                    //albumInstance.LastUpdate = item.lastUpdate;
+                    //albumInstance.AuthorFirstname = item.CreateUser.firstname;
+                    //albumInstance.AuthorLastname = item.CreateUser.lastname;
+                    //albumInstance.AuthorEmail = item.CreateUser.email;
+                    //albumInstance.ListPhoto = PhotoDAO.ListPhotosByAlbum(userId, page, size, item.Id);
+
+                    listAlbumDTO.Add(albumInstance);
+                }
+
+                return (listAlbumDTO.Count() > 0) ? listAlbumDTO : new List<AlbumDTO>(0);
             }
         }
 
         // list albums by story of a user
-        public static List<AlbumDTO> ListAlbumsByStory(int page, int size, long storyId)
+        public static List<AlbumDTO> ListAlbumsByStory(long userId, int page, int size, long storyId)
         {
             using (var context = new CF_FamsamEntities())
             {
@@ -55,10 +93,10 @@ namespace ServerAPI.DAO
                     albumInstance.Title = item.title;
                     albumInstance.Description = item.Post.description;
                     albumInstance.LastUpdate = item.Post.lastUpdate;
-                    albumInstance.PostType = item.Post.postType;
                     albumInstance.AuthorFirstname = item.Post.CreateUser.firstname;
                     albumInstance.AuthorLastname = item.Post.CreateUser.lastname;
                     albumInstance.AuthorEmail = item.Post.CreateUser.email;
+                    albumInstance.ListPhoto = PhotoDAO.ListPhotosByAlbum(userId, page, size, item.id);
 
                     listAlbumDTO.Add(albumInstance);
                 }
@@ -68,7 +106,7 @@ namespace ServerAPI.DAO
         }
 
         // get album by albumid
-        public static AlbumDTO GetAlbumById(long albumId)
+        public static AlbumDTO GetAlbumById(long userId, int page, int size, long albumId)
         {
             using (var context = new CF_FamsamEntities())
             {
@@ -79,11 +117,10 @@ namespace ServerAPI.DAO
                 albumInstance.Title = generalPost.Album.title;
                 albumInstance.Description = generalPost.description;
                 albumInstance.LastUpdate = generalPost.lastUpdate;
-                albumInstance.PostType = generalPost.postType;
                 albumInstance.AuthorFirstname = generalPost.CreateUser.firstname;
                 albumInstance.AuthorLastname = generalPost.CreateUser.lastname;
                 albumInstance.AuthorEmail = generalPost.CreateUser.email;
-                //albumInstance.ListPhoto = generalPost.Album.Photo;
+                albumInstance.ListPhoto = PhotoDAO.ListPhotosByAlbum(userId, page, size, generalPost.Id);
 
                 return albumInstance;
             }
@@ -103,7 +140,6 @@ namespace ServerAPI.DAO
                 post.Id = DateTime.Now.Millisecond;
                 post.description = albumNew.Description;
                 post.lastUpdate = DateTime.Now;
-                post.postType = ALBUM_POST_TYPE;
                 post.createUserId = user.id;
                 Album album = new Album();
                 album.id = post.Id;
@@ -187,11 +223,25 @@ namespace ServerAPI.DAO
                 var album = post.Album;
                 post.lastUpdate = DateTime.Now;
                 album.title = albumEdit.Title;
-                // Nhut chua lam 0 diem perfomance =))
-                // add new list of photos to album
-                // remove list of photos from album
+                post.description = albumEdit.Description;
                 try
                 {
+                    // add new list of photos to album
+                    if (listPhotoAdd.Count > 0)
+                    {
+                        foreach (var newPhoto in listPhotoAdd)
+                        {
+                            album.Photo.Add(context.Photo.FirstOrDefault(p => p.id == newPhoto.Id));
+                        }
+                    }
+                    // remove list of photos from album
+                    if (listPhotoRemove.Count > 0)
+                    {
+                        foreach (var removePhoto in listPhotoRemove)
+                        {
+                            album.Photo.Remove(context.Photo.FirstOrDefault(p => p.id == removePhoto.Id));
+                        }
+                    }
                     context.Entry<Album>(album).State = EntityState.Modified;
                     context.Entry<GeneralPost>(post).State = EntityState.Modified;
                     context.SaveChanges();
@@ -249,6 +299,21 @@ namespace ServerAPI.DAO
                     }
                 }
                 return 0;
+            }
+        }
+
+        // check if current user and target user are in one family.
+        public static bool CheckUsersInFamily(long userId, long otherUserId, long familyId)
+        {
+            using (var context = new CF_FamsamEntities())
+            {
+                var userFamilyRole = context.FamilyRole.FirstOrDefault(fr => fr.userId == userId && fr.familyId == familyId);
+                var otherUserFamilyRole = context.FamilyRole.FirstOrDefault(fr => fr.userId == otherUserId && fr.familyId == familyId);
+                if (userFamilyRole != null && otherUserFamilyRole != null)
+                {
+                    return true;
+                }
+                return false;
             }
         }
     }
