@@ -1,0 +1,266 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-info">
+            <div class="panel-heading" style="height: 37px;">
+                <div style="float:left;">
+                    <h3 class="panel-title" style="font-family: Broadway;font-size: 1.3em; color: white"
+                        >{{family.name}} Family</h3>
+                </div>
+                <div style="float:right;">
+                    <span class="dropdown" on-toggle="toggled(open)">
+                        <a href class="dropdown-toggle">
+                            <span style="color:white;" class="glyphicon glyphicon-chevron-down"></span>
+                        </a>
+                        <ul class="dropdown-menu pull-right" ng-show="family.isMember">
+                            <li>
+                                <a ng-click="leaveFamily()">Leave this family</a>
+                            </li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="btn-group pull-left" ng-show="family.isMember">
+                    <button type="button" class="btn btn-default" ng-click="inviteSomeone()">Invite someone</button>
+                    <button type="button" class="btn btn-default" ng-show="family.isOwner"
+                            ng-click="inviteFamily()">
+                        Invite other family
+                    </button>
+                </div>
+                <div class="pull-right" ng-hide="family.isMember">
+                    <button ng-hide="family.followed" class="btn btn-default" value="Follow" ng-click="follow()"><span class="glyphicon glyphicon-hand-right"></span> &nbsp;Follow</button>
+                    <button ng-show="family.followed" class="btn btn-default" value="Follow" ng-click="unfollow()"><span class="glyphicon glyphicon-hand-right"></span> &nbsp;Unfollow</button>
+                </div>
+                <div style="clear: both"></div>
+                <div class="panel panel-default" style="margin-top:15px;">
+                    <div class="panel-body">
+                        Owner: {{family.owner.firstName}} {{family.owner.lastName}} <br/>
+                        Description: {{family.description}}
+                        <div><i>Member<span ng-show="family.memberAmount>1">s</span>: {{family.memberAmount}}. Neighbor<span ng-show="family.neighborAmount>1">s</span>: {{family.neighborAmount}}</i></div>
+                    </div>
+                </div>
+
+                <div ng-repeat="feed in family.feeds">
+
+                    <div ng-if="feed.type == 'story'" ng-init="param = {choosen: -1}">
+                        <img ng-src="{{feed.actorAvatarUrl}}" alt="No avatar" width="40" height="40">
+                        <a style="font-weight: bold">{{feed.actorFirstName}} {{feed.actorLastName}}</a> created <a href="../#/home/story-detail/{{feed.objId}}" ng-bind="feed.title"></a> story - <span ng-duration date="feed.date"></span><br />
+                        <br /><p>{{feed.contain}}</p>
+                        <a ng-hide="feed.liked" ng-click="like(feed.date, $index)">Like</a>
+                        <a ng-show="feed.liked" ng-click="unlike(feed.date, $index)">Unlike</a>
+                        <i ng-show="!feed.liked && feed.numberOfLikes > 0">{{feed.numberOfLikes}} people like<i ng-show="feed.numberOfLikes == 1">s</i> this</i>
+                        <i ng-show="feed.liked && feed.numberOfLikes == 1">You like this</i>
+                        <i ng-show="feed.liked && feed.numberOfLikes > 1">You and {{feed.numberOfLikes - 1}} other<i ng-show="feed.numberOfLikes > 2">s</i> like this</i>
+                        <a href="../#/home/story-detail/{{feed.objId}}">
+                            <div style="width: 300px; height: 300px" class="ng-class: {'glowing-border': param.choosen==$index}; img-border" ng-click="param.choosen = $index;">
+                                <div class=" img" style="background-image: url('{{feed.imageURL}}'); background-position: center; height: 90%">
+                                </div>
+                            </div>
+                        </a>
+                        <!--<div class="panel panel-default">
+            <div class="panel-body">
+                <p ng-repeat="comment in feed.comments">
+                    <img src="img/avatar.jpg" alt="Responsive image" width="30" height="30">
+                    <a style="font-weight: bold" href="#">{{comment.userCommentName}}</a> {{comment.content}} - <span ng-duration date="comment.commentId">
+                </p>
+                <p style="width: 100%">
+                    <img src="img/avatar.jpg" alt="Responsive image" width="30" height="30">
+                    <input type="text" multiple class="comment" ng-enter="comment()" ng-model="comment.content" style="width: 90%" placeholder="Write comment here..">
+                </p>
+            </div>
+        </div>-->
+                        <hr />
+                    </div>
+
+                    <div ng-if="feed.type == 'sharing-Story'" ng-init="param = {choosen: -1}">
+                        <img ng-src="{{feed.actorAvatarUrl}}" alt="No avatar" width="40" height="40">
+                        <a style="font-weight: bold">{{feed.actorFirstName}} {{feed.actorLastName}}</a> shared <a href="../#/home/story-detail/{{feed.objId}}" ng-bind="feed.title"></a> story - <span ng-duration date="feed.date"></span><br />
+                        <br /><p>{{feed.contain}}</p>
+                        <a ng-hide="feed.liked" ng-click="like(feed.date, $index)">Like</a>
+                        <a ng-show="feed.liked" ng-click="unlike(feed.date, $index)">Unlike</a>
+                        <i ng-show="!feed.liked && feed.numberOfLikes > 0">{{feed.numberOfLikes}} people like<i ng-show="feed.numberOfLikes == 1">s</i> this</i>
+                        <i ng-show="feed.liked && feed.numberOfLikes == 1">You like this</i>
+                        <i ng-show="feed.liked && feed.numberOfLikes > 1">You and {{feed.numberOfLikes - 1}} other<i ng-show="feed.numberOfLikes > 2">s</i> like this</i>
+                        <div class="panel panel-default" style="margin-top:15px; opacity: 0.8; font-style:italic">
+                            <div class="panel-body">
+                                <a style="font-weight: bold">{{feed.rootPostUserFirstName}} {{feed.rootPostUserLastName}}</a> - <span ng-duration date="feed.rootPostId"></span><br/>
+                                <br />{{feed.rootPostContent}}<br/>
+                                <a href="../#/home/story-detail/{{feed.objId}}">
+                                    <div class="ng-class: {'glowing-border': param.choosen==$index}; img-border" ng-click="param.choosen = $index;">
+                                        <div class=" img" style="background-image: url('{{feed.imageURL}}');">
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-if="feed.type == 'sharing-Album'" ng-init="param = {choosen: -1}">
+                        <img ng-src="{{feed.actorAvatarUrl}}" alt="No avatar" width="40" height="40">
+                        <a style="font-weight: bold">{{feed.actorFirstName}} {{feed.actorLastName}}</a> shared <a href="../#/home/album-detail/{{feed.objId}}" ng-bind="feed.title"></a> album - <span ng-duration date="feed.date"></span><br />
+                        <br/><p>{{feed.contain}}</p>
+                        <a ng-hide="feed.liked" ng-click="like(feed.date, $index)">Like</a>
+                        <a ng-show="feed.liked" ng-click="unlike(feed.date, $index)">Unlike</a>
+                        <i ng-show="!feed.liked && feed.numberOfLikes > 0">{{feed.numberOfLikes}} people like<i ng-show="feed.numberOfLikes == 1">s</i> this</i>
+                        <i ng-show="feed.liked && feed.numberOfLikes == 1">You like this</i>
+                        <i ng-show="feed.liked && feed.numberOfLikes > 1">You and {{feed.numberOfLikes - 1}} other<i ng-show="feed.numberOfLikes > 2">s</i> like this</i>
+                        <div class="panel panel-default" style="margin-top:15px; opacity: 0.8; font-style:italic">
+                            <div class="panel-body">
+                                <a style="font-weight: bold">{{feed.rootPostUserFirstName}} {{feed.rootPostUserLastName}}</a> - <span ng-duration date="feed.rootPostId"></span><br />
+                                <br />{{feed.rootPostContent}}<br />
+                                <a href="../#/home/album-detail/{{feed.objId}}">
+                                    <div class="ng-class: {'glowing-border': param.choosen==$index}; img-border" ng-click="param.choosen = $index;">
+                                        <div class=" img" style="background-image: url('{{feed.imageURL}}');">
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+</div>
+<script type="text/ng-template" id="invite-someone.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Invite Somone to <i>{{familyName}}</i> Family</h3>
+    </div>
+    <div class="modal-body" style="overflow:auto;">
+        <div class="row" ng-hide="invite.messaging">
+            <div class="col-xs-12">
+                <form role="form" name="frmSearch" class="form-horizontal">
+                    <div class="ng-class: {'has-error': frmSearch.keyword.$dirty && frmSearch.keyword.$error.required}; form-group">
+                        <label for="txtSearch" class="col-xs-3 control-label">Someone to invite:</label>
+                        <div class="col-lg-6">
+                            <div class="input-group">
+                                <input type="text" class="form-control" ng-model="searchObj.keyword" id="txtSearch" name="keyword"
+                                       ng-autofocus ng-enter="search(searchObj.keyword)" required
+                                       placeholder="Type email or user's name to search">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button" ng-click="search(searchObj.keyword)">Search</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top:14px;" ng-hide="invite.messaging">
+            <div class="col-xs-2"></div>
+            <div class="col-xs-9">
+                <div class="alert alert-danger" ng-show="invite.selfChoosen">Choose another except yourself.</div>
+                <div class="media" ng-repeat="user in searchObj.results" style="margin-left: 10px;">
+                    <a class="pull-left" ng-click="choose(user)">
+                        <img class="media-object" ng-src="{{user.avatarUrl}}" alt="...">
+                    </a>
+                    <div class="media-body">
+                        <a ng-click="choose(user)"><h4 class="media-heading">{{user.firstname}} {{user.lastname}}</h4></a>
+                        {{user.email}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" ng-show="invite.messaging">
+            <div class="col-xs-2"></div>
+            <div class="col-xs-9">
+                <form role="form" name="frmSearch" class="form-horizontal">
+                    <div class="alert alert-danger" ng-show="invite.inviteFail">Invite fail. Please try again later.</div>
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label">Invite</label>
+
+                        <div class="col-xs-10" title="{{invite.invitee.email}}">
+                            <span ng-repeat="invitee in invite.invitees">
+                                {{invitee.firstname}} {{invitee.lastname}} <span ng-show="$index != (invite.invitees.length-1)">, </span>
+                            </span> 
+                            <a class="btn btn-default btn-sm" ng-click="addSomoneElse()">Add Someone else</a>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label">Message</label>
+
+                        <div class="col-xs-10" title="{{invite.invitee.email}}">
+                            <input type="text" ng-model="invite.message" class="form-control" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="sendInvite()" ng-disabled="!invite.messaging">Send Invite</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="invite-family.html">
+    <div class="modal-header">
+        <h3 class="modal-title"> Neighbor Request <img ng-show="request.loading" src="img/loading.gif" /></h3>
+    </div>
+    <div class="modal-body" style="overflow:auto;">
+        <div class="row" ng-hide="request.messaging">
+            <div class="col-xs-12">
+                <form role="form" name="frmSearch" class="form-horizontal">
+                    <div class="ng-class: {'has-error': frmSearch.keyword.$dirty && frmSearch.keyword.$error.required}; form-group">
+                        <label for="txtSearch" class="col-xs-3 control-label">Family name to invite:</label>
+                        <div class="col-lg-6">
+                            <div class="input-group">
+                                <input type="text" class="form-control" ng-model="searchObj.keyword" id="txtSearch" name="keyword"
+                                       ng-autofocus ng-enter="search(searchObj.keyword)" required>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button" ng-click="search(searchObj.keyword)">Search</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top:14px;" ng-hide="request.messaging">
+            <div class="col-xs-2"></div>
+            <div class="col-xs-9">
+                <div class="alert alert-danger" ng-show="request.selfChoosen">Choose another except your family.</div>
+                <div class="media" ng-repeat="family in searchObj.results" style="margin-left: 10px;">
+                    <a class="pull-left" ng-click="choose($index)">
+                        <img class="media-object" ng-src="" alt="...">
+                    </a>
+                    <div class="media-body">
+                        <a ng-click="choose($index)"><h4 class="media-heading">{{family.name}}</h4></a>
+                        {{family.description}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" ng-show="request.messaging">
+            <div class="col-xs-2"></div>
+            <div class="col-xs-9">
+                <form role="form" name="frmSearch" class="form-horizontal">
+                    <div class="alert alert-danger" ng-show="request.requestFail">Request fail. Please try again later.</div>
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label">Send Request To</label>
+
+                        <div class="col-xs-10">
+                            {{request.toFamily.name}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label">Message</label>
+
+                        <div class="col-xs-10">
+                            <input type="text" ng-model="request.message" class="form-control" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="sendRequest()" ng-disabled="!request.messaging">Send Invite</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
