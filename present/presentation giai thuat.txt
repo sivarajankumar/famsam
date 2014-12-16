@@ -1,0 +1,40 @@
+RECOMMENDATION SYSTEM: Để đề xuất 1 bài post cho 1 người dùng thì giải thuật sẽ đi qua 3 bước tổng quát sau:
+1. Xác định được profile của bài post. Profile của 1 bài post được xác định bởi từ khoá của bài post đó (lấy được từ title, description và hashtag của bài post đó).
+2. Xác định được profile của người dùng.
+3. Dựa vào profile tính được, hệ thống sẽ tính toán sự tương đồng giữa 2 profile đó và quyết định xem có đề xuất bài post đó cho người dùng hay không.
+
+Đi sâu vào chi tiết:
+1. Xác định từ khoá của bài post:
+a. Hashtag: lấy chính xác chữ mà người dùng thêm vào bài post để làm từ khoá.
+b. Lấy từ khoá từ trong title và description:
+	- Khi 1 bài post được tạo, hệ thống sẽ lấy title cộng cho description thành 1 văn bản. Ví dụ: 1 bài post có title là Vũng Tàu và description: Vũng Tàu đẹp nhất là biển. => văn bản: Vũng Tàu Vũng Tàu đẹp nhất là biển.
+	- Sau khi có "văn bản" của bài post, hệ thống sẽ tiến hành loại bỏ stopwords có trong văn bản. (stopwords là những từ ngữ phổ biến được lặp đi lặp lại nhiều lần trong văn viết). Sau khi loại bỏ stopwords "là" ở văn bản ví dụ trên: Vũng Tàu Vũng Tàu đẹp nhất biển.
+	- Sau khi có văn bản thì tiến hành tính 2 đại lượng sau: Term Frequency (TF) và Inverse Document Frequency (IDF)
+		+ TF: đặc trưng cho tần số xuất hiện của 1 từ trong văn bản.
+			Ví dụ: TF của từ đẹp = 1/2 = 0.5.
+		+ IDF: dùng để xét độ phổ biến của 1 từ trong toàn bộ các văn bản. Từ nào càng phổ biến thì IDF của nó càng nhỏ.
+			Ví dụ: số lượng văn bản chứa từ "đẹp" là: 3. Tổng số văn bản có trong hệ thống là 10. => IDF của từ đẹp = log2(10/3) = 1.7369656
+		+ TF.IDF: đặc trưng cho độ quan trọng của 1 từ trong văn bản. Giá trị TFIDF càng lớn thì có nghĩa là tần số xuất hiện của từ đó cao trong khi nó lại ít phổ biến trong toàn bộ văn bản. => từ đó sẽ đặc trưng cho văn bản.
+			=> Lấy 50% số từ có giá trị TFIDF cao nhất làm từ khoá cho 1 văn bản.
+c. Tất cả các từ khoá của tất cả văn bản được đưa vào 1 tập hợp các từ khoá.
+d. Xác định post profile: lập bảng với cột là tập các từ khoá, hàng là tập các văn bản. Nếu văn bản chứa từ khoá => đánh số 1, k chứa đánh số 0.
+2. Xác định user Profile: lập bảng tương tự với cột là tập các từ khoá, hàng là danh sách người dùng.
+	Các giá trị trong bảng được tính bởi công thức: tử số là số lượng bài post người dùng like mà có chứa từ khoá, mẫu số là số lượng bài post người dùng like.
+3. Xác định độ tương đồng giữa post profile và user profile:
+	P1 và U1 là 2 vector tượng trưng cho post profile và user profile, nên góc giữa 2 vector này cũng tượng trưng cho độ tương đồng giữa 2 profile trên. Góc càng bé thì 2 vector càng gần nhau => 2 profile cũng tương đồng với nhau hơn.
+	Để tính góc giữa 2 vector ta dựa vào công thức toán học sau: cos bla bla. Cos càng lớn thì góc càng nhỏ => 2 profile càng tương đồng => người dùng có thể sẽ thích bài post này. => hệ thống sẽ đề xuất cho người dùng.
+	
+	
+BLUR IMAGE DETECTED:
+1. Ý tưởng:
+	a. Nhận diện viền của ảnh.
+	b. Tại mỗi điểm pixel được nhận diện là viền, ta sẽ tính bề rộng của viền tại pixel đó.
+	c. Tính trung bình cộng của tất cả bề rộng của viền lại với nhau.
+	d. Trung bình cộng này càng lớn thì ảnh sẽ càng mờ, nhoè.
+2. Chi tiết:
+	Để nhận diện viền của ảnh:
+		+ Dùng bộ lọc Grayscale Filter để đưa 1 tấm ảnh có màu thành không màu. Grayscale là 1 thuật toán nhận đầu vào là 1 bức ảnh bất kỳ. 1 pixel trong ảnh gồm 3 giá trị: Red, Green và Blue. Ứng với mỗi pixel trong ảnh, đưa 3 giá trị R, G, B về cùng 1 giá trị theo công thức sau: [công thức]. Khi cả 3 giá trị RGB của các pixel bằng nhau thì ảnh sẽ bị mất màu như hình.
+		+ Sau đó sử dụng bộ lọc Sobel Filter để xác định viền trên ảnh không màu. Sobel Filter có 2 loại: Vertical với Horizontal dùng để xác định viền dọc với viền ngang của ảnh. Để giải thích thuật toán sobel filter thì tôi xin giải thích phép toán CONVOLUTION: Convolution là 1 phép toán dùng để chuyển 1 ma trận này thành 1 ma trận mới dựa trên 1 ma trận có sẵn gọi là kernel. Hình trên slide mô tả cách tính convolution đối với 1 phần tử trong ma trận pixel. Đối với thuật toán Sobel, cung cấp 2 ma trận kernel như trên slide.
+		+ hình trên slide là 1 ví dụ về viền thực hiện phép toán convolution của 1 ảnh với ma trận dọc của thuật toán sobel. Ta sẽ được kết quả là 1 hình gồm các viền dọc của ảnh. ở đây các điểm là viền của ảnh thì sẽ có giá trị pixel lớn đến 255 (màu trắng). Những điểm k phải viền thì có giá trị nhỏ tới 0 (màu đen).
+		+ Sau khi có điểm viền: ta đi tính bề rộng của viền tại mỗi điểm. Đồ thị trên slide mô tả giá trị các pixel ứng với vị trí của pixel đó trên 1 dòng trong ma trận pixel. Trục dọc là giá trị pixel, trục ngang là vị trí của pixel đó. Giả sử P1 là điểm viền, ta sẽ xác định 2 điểm cực đại cực tiểu gần P1 nhất. Ở đây là P2, P2'. Do tại P2 và P2' có sự thay đổi đột ngột của giá trị pixel, cho nên khoảng từ P2 tới P2' là 1 mảng màu. trong mảng này tồn tại điểm viền => mảng [P2, P2'] là mảng màu nhoè của viền. => khoảng cách từ P2 tới P2' là độ rộng của viền.
+		+ Tương tự cho các điểm viền khác => ta sẽ có tập các độ rộng của các viền. => tính trung bình của các độ rộng đó ta sẽ có 1 đại lượng đặc trưng cho độ mờ của bức ảnh, đại lượng này càng lớn thì bức ảnh càng mờ.
