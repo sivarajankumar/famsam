@@ -1,0 +1,22 @@
+nhựt: xin chào quý hội đồng cùng với các bạn có mặt trong buổi bảo vệ đồ án tốt nghiệp ngày hôm nay. nhóm tôi là nhóm 11 với đề tài hệ thống chia sẻ ảnh gia đình với tên gọi tắt là famsam. nhóm tôi được hướng dẫn bởi thầy nguyễn huy hùng, gồm có 2 thành viên: tôi là minh nhựt và đây là đình tân. sau đây tôi xin bắt đầu phần thuyết trình của mình.
+
+nhựt: nội dung của phần thuyết trình hôm nay gồm có các nội dung chính sau. phần đầu tiên là sẽ giới thiệu về mục đích ra đời của hệ thống. tiếp là các nhóm tính năng mà hệ thống hỗ trợ ở thời điểm hiện tại. sau đó là giới thiệu về kiến trúc của hệ thống, những hạn chế của hệ thống. cuối cùng là phần demo và trình bày về giải thuật được áp dụng.  
+
+Nhựt: 1. Introduction: Hiện tại trên internet, có khá nhiều hệ thống chia sẻ ảnh được biết đến rộng rãi có thể kể đến như: Facebook, Instagram, flickr...
+Nhưng những hệ thống này chỉ mới hỗ trợ lưu trữ và chia sẻ ảnh ngẫu nhiên giữa người dùng mà không hỗ trợ tính năng chia sẻ ảnh mang đặc thù của gia đình.
+FAMSAM ra đời nhằm tạo ra mạng xã hội dành cho các gia đình có thể lưu trữ và chia sẻ những album ảnh của mình cũng như chia sẻ nó cho những gia đình khác.
+
+Nhựt: 2. Sau đây là các nhóm tính năng mà hệ thống cung cấp
+Để mọi người dễ hiểu hơn về các nhóm tính năng này tôi xin trình bày flow chính của người dùng khi tham mạng xã hội FAMSAM:
+- Đầu tiên khi tham vào hệ thống, người dùng sẽ tạo cho mình 1 gia đình (gia đình ảo), người dùng cũng có thể cho gia đình của mình kết láng giềng với các gia đình khác có sẵn trong hệ thống. Các nhóm tính năng nào giúp người dùng tạo gia đình hay là kết láng giềng với gia đình khác sẽ thuộc về nhóm family features.
+- Sau khi đã tạo được 1 mạng xã hội gồm gia đình của mình và các láng giềng xung quanh mình. người dùng tiếp theo sẽ tạo và quản lý các albums ảnh, nhiều albums ảnh có thể tổ chức thành các stories. Trong hệ thống famsam, các album và story được gọi chung là các bài post. Những chức năng nào giúp người dùng tạo và quản lý các bài post thì thuộc về nhóm post management features.
+- Cuối cùng người dùng có thể chia sẻ các story/album, người dùng cũng có thể like hoặc comment. Các chức năng giúp người dùng tương tác với nhau sẽ thuộc về nhóm social network features.
+=> Đó là 3 nhóm chức năng dành cho người dùng khi tham gia mạng xã hội famsam.
+- Nhóm chức năng cuối cùng Admin Management features dành cho quản trị viên quản lý mạng xã hội famsam.
+
+FAMILY FEATURES: cung cấp các chức năng sau
+- Đầu tiên là người dùng sẽ tạo ra gia đình cho mình. Mặc định người tạo cũng là chủ của gia đình. Sau đó người dùng sẽ thêm các thành viên vào trong gia đình của mình. Để cho đông vui hơn thì người chủ có thể cho gia đình của họ kết láng giềng với nhau.
+- Hình vẽ trên slide mô trả mối quan hệ giữa hai gia đình. Mỗi gia đình gồm 1 chủ và nhiều thành viên. Các gia đình có thể có mối quan hệ láng giềng với nhau.
+POST FEATURES: cung cấp các chức năng sau:
+- Chức năng đầu tiên là tạo album, trong lúc tạo album, người dùng có thể upload ảnh để thêm vào album. Trong lúc upload ảnh, hệ thống cung cấp chức năng nhận diện ảnh mờ nhoè để người dùng có thể xoá nó trước khi upload và thêm vào trong album.
+- 
